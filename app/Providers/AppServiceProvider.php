@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        DB::statement("SET lc_time_names = 'es_ES'");
+        //DB::statement("SET lc_time_names = 'es_ES'");
     }
 
     /**
