@@ -22,7 +22,8 @@ class User extends Authenticatable
         'fecha_nacimiento',
         'password',
         'usuario',
-        'email'
+        'email',
+        'path'
     ];
 
     public function categorias(){

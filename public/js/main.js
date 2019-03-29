@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
   $('.carousel').carousel();
+  $('.alert').alert()
+  
 
   if($('#cabecera').css('display','none')){
     $('cuerpo').append('<p>Usted no tiene pagos pendientes</p>');
@@ -108,5 +110,53 @@ $(document).ready(function(){
     });
   });
 
+  $('.imagen').on('click', function () {
+    $('#imagen').click();
+  });
+
+  $('#imagen').on('change',function(e){
+
+    e.preventDefault();
+
+    var imagen = $('#imagen');
+    console.log(imagen[0].files[0]);
+    var formData = new FormData(document.getElementById('formImg'));
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url : '/admin/users/updateImg',
+      type: "POST",
+      data : formData,
+      contentType: false,
+      cache: false,
+      processData:false,
+      xhr: function(){
+      //upload Progress
+      var xhr = $.ajaxSettings.xhr();
+      if (xhr.upload) {
+        xhr.upload.addEventListener('progress', function(event) {
+          $('#div-img').html('<img src="/img/loading.gif">')
+        }, true);
+      }
+      return xhr;
+    },
+    mimeType:"multipart/form-data"
+    }).done(function(res){ 
+        var cadena = res.replace(/['"]+/g, '');
+        $('.imagen').attr('src', '/img/'+cadena);
+        $('.content-header').append('<div class="alert alert-success alert-dismissible">'+
+                        '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
+                        'Avatar actualizado con éxito!!'+
+                        '</div>');
+        setTimeout(function() {
+        $(".alert").alert('close');
+        }, 3000);
+        console.log(cadena);
+        //addShadow($("#pregunta_fileid"+option_id).val(),'store');	
+    });
+  }); 
   
+  
+
 });

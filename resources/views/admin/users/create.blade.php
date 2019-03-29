@@ -7,6 +7,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Registrar nuevo usuario</div>
                 <div class="panel-body">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                    </ul>
+                </div>
+                @endif
                     <form method="post" action="/admin/users/store" class="form-horizontal">
                     {{ csrf_field() }}
                         <div class="form-group">

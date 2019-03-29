@@ -65,13 +65,13 @@
               </span>
           </a>
           <ul class="treeview-menu">
-              @foreach($pm as $p)
-            <li><a href="/post/">{{ $p->titulo }}</a></li>
-              @endforeach
+              @foreach($mes->posts as $post)
+            <li><a href="/post/{{$post->slug}}" class="linkPost">{{ substr($post->titulo,0,25) }}...</a></li>
+             @endforeach
           </ul>
         </li>
-        @endforeach
-      </ul>
+       @endforeach
+    </ul>
     </aside>
     <aside class="asideF aside-2">
             <i class="fa fa-folder"></i><span></span><strong style="font-size:16px"> Publicaciones Pasadas</strong>
@@ -89,7 +89,7 @@
         
         <div class="contenedorH">
             <div class="itemPost">
-                <b><small>Creado el: </small></b><small>{{ $post->created_at }}</small><br>
+                <b><small>Actualizado en: </small></b><small>{{ $post->fechapub }}</small><br>
                 <b><small>Creado por: </small></b><small>{{ $post->user->usuario }}</small>
             </div>
             <div class="form-label itemCom" style="padding-top: 10px;">

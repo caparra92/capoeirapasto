@@ -12,34 +12,8 @@ use App\Categoria;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Vista index
 Route::get('/', 'PostController@show');
-
-Route::get('/new', function(){
-    
-});
-
-Route::get('/categorias', function(){
-    $categorias = User::find(1)->categorias;
-
-    foreach($categorias as $categoria){
-        echo($categoria->nombre)."<br>";
-    }
-});
-
-Route::get('/usuario', function(){
-    $categoria = Categoria::find(1);
-    echo $categoria->user->nombre;
-    
-});
-
-Route::get('/usuario/{id}/pago', function($id){
-    $usuario = User::find($id);
-
-    foreach($usuario->pagos as $pago){
-        echo($pago->detalle)."<br>";
-    }
-});
 
 Auth::routes();
 
@@ -54,59 +28,60 @@ Route::get('/admin', ['middleware' => 'auth', function()
  
 //users
 
-Route::get('/admin/users', 'UserController@index');
-Route::get('/admin/users/new', 'UserController@create');
-Route::get('/admin/users/edit/{id}', 'UserController@edit');
-Route::get('/admin/users/delete/{id}', 'UserController@destroy');
-Route::get('/admin/users/profile/{id}', 'UserController@show');
+Route::get('/admin/users', 'UserController@index')->middleware('auth');
+Route::get('/admin/users/new', 'UserController@create')->middleware('auth');
+Route::get('/admin/users/edit/{id}', 'UserController@edit')->middleware('auth');
+Route::get('/admin/users/delete/{id}', 'UserController@destroy')->middleware('auth');
+Route::get('/admin/users/profile/{id}', 'UserController@show')->middleware('auth');
 
-Route::post('/admin/users/store/', 'UserController@store');
-Route::post('/admin/users/update/{id}', 'UserController@update');
+Route::post('/admin/users/store', 'UserController@store')->middleware('auth');
+Route::post('/admin/users/update/{id}', 'UserController@update')->middleware('auth');
+Route::post('/admin/users/updateImg','UserController@updateImg')->middleware('auth');
 
 //categorias
-Route::get('/admin/categories', 'CategoriaController@index');
-Route::get('/admin/categories/new', 'CategoriaController@create');
-Route::get('/admin/categories/edit/{id}', 'CategoriaController@edit');
-Route::get('/admin/categories/delete/{id}', 'CategoriaController@destroy');
+Route::get('/admin/categories', 'CategoriaController@index')->middleware('auth');
+Route::get('/admin/categories/new', 'CategoriaController@create')->middleware('auth');
+Route::get('/admin/categories/edit/{id}', 'CategoriaController@edit')->middleware('auth');
+Route::get('/admin/categories/delete/{id}', 'CategoriaController@destroy')->middleware('auth');
 
-Route::post('/admin/categories/store', 'CategoriaController@store');
-Route::post('/admin/categories/update/{id}', 'CategoriaController@update');
+Route::post('/admin/categories/store', 'CategoriaController@store')->middleware('auth');
+Route::post('/admin/categories/update/{id}', 'CategoriaController@update')->middleware('auth');
 
 //posts
-Route::get('/admin/posts', 'PostController@index');
-Route::get('/admin/posts/new/', 'PostController@create');
-Route::get('/admin/posts/edit/{id}', 'PostController@edit');
-Route::get('/admin/posts/delete/{id}', 'PostController@destroy');
+Route::get('/admin/posts', 'PostController@index')->middleware('auth');
+Route::get('/admin/posts/new/', 'PostController@create')->middleware('auth');
+Route::get('/admin/posts/edit/{id}', 'PostController@edit')->middleware('auth');
+Route::get('/admin/posts/delete/{id}', 'PostController@destroy')->middleware('auth');
 
 //post con slug
 Route::get('/post/{slug}','PostController@post');
 
-Route::post('/admin/posts/store/', 'PostController@store');
-Route::post('/admin/posts/update/{id}', 'PostController@update');
+Route::post('/admin/posts/store/', 'PostController@store')->middleware('auth');
+Route::post('/admin/posts/update/{id}', 'PostController@update')->middleware('auth');
 
 //pagos
-Route::get('/admin/pagos', 'PagoController@index');
-Route::get('/admin/pagos/new', 'PagoController@create');
-Route::get('/admin/pagos/edit/{id}', 'PagoController@edit');
-Route::get('/admin/pagos/delete/{id}', 'PagoController@destroy');
-Route::get('/admin/pagos/profile/{id}', 'PagoController@show');
+Route::get('/admin/pagos', 'PagoController@index')->middleware('auth');
+Route::get('/admin/pagos/new', 'PagoController@create')->middleware('auth');
+Route::get('/admin/pagos/edit/{id}', 'PagoController@edit')->middleware('auth');
+Route::get('/admin/pagos/delete/{id}', 'PagoController@destroy')->middleware('auth');
+Route::get('/admin/pagos/profile/{id}', 'PagoController@show')->middleware('auth');
 
-Route::post('/admin/pagos/store', 'PagoController@store');
-Route::post('/admin/pagos/update/{id}', 'PagoController@update');
+Route::post('/admin/pagos/store', 'PagoController@store')->middleware('auth');
+Route::post('/admin/pagos/update/{id}', 'PagoController@update')->middleware('auth');
 
 //comentarios
-Route::get('/admin/post/{id}/coments', 'ComentarioController@index');
-Route::post('/post/coment', 'ComentarioController@store');
-Route::get('/admin/post/coment/delete/{id}','ComentarioController@destroy');
+Route::get('/admin/post/{id}/coments', 'ComentarioController@index')->middleware('auth');
+Route::post('/post/coment', 'ComentarioController@store')->middleware('auth');
+Route::get('/admin/post/coment/delete/{id}','ComentarioController@destroy')->middleware('auth');
 
 //usuarios-pagos
-Route::get('/admin/pagos/user/{id}', 'PagoController@user');
-Route::get('/admin/pagos/user/', 'PagoController@pagosIndex');
-Route::get('/admin/pagos/user/edit/{id}', 'PagoController@editUser');
-Route::get('/admin/pagos/user/delete/{id}', 'PagoController@deleteUser');
-Route::get('/admin/pagos/user/estado/{id}', 'PagoController@updateEstado');
+Route::get('/admin/pagos/user/{id}', 'PagoController@user')->middleware('auth');
+Route::get('/admin/pagos/user/', 'PagoController@pagosIndex')->middleware('auth');
+Route::get('/admin/pagos/user/edit/{id}', 'PagoController@editUser')->middleware('auth');
+Route::get('/admin/pagos/user/delete/{id}', 'PagoController@deleteUser')->middleware('auth');
+Route::get('/admin/pagos/user/estado/{id}', 'PagoController@updateEstado')->middleware('auth');
 
-Route::post('/admin/pagos/user/add/{id}', 'PagoController@addUser');
-Route::post('/admin/pagos/user/update/{id}', 'PagoController@updateUser');
+Route::post('/admin/pagos/user/add/{id}', 'PagoController@addUser')->middleware('auth');
+Route::post('/admin/pagos/user/update/{id}', 'PagoController@updateUser')->middleware('auth');
 
-Route::post('/admin/pagos/user/filter', 'PagoController@filter');
+Route::post('/admin/pagos/user/filter', 'PagoController@filter')->middleware('auth');

@@ -70,7 +70,7 @@
             <a href="/post/{{$related->slug}}">Ver más</a>
         </div>
         <div class="card-footer text-muted">
-            {{$related->updated_at}}
+        {!! \Carbon\Carbon::parse($related->updated_at)->toFormattedDateString() !!}
         </div>
         </div>
     </div>

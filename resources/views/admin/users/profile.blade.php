@@ -4,8 +4,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3 text-center">
-            <div class="col-md-12">
-                <img src="/adminlte/img/avatar04.png" alt="Imagen perfil" class="img-circle">
+            <div class="col-md-12 div-img">
+                @if($user->path)
+                <img src="/img/{{ $user->path }}" alt="Imagen perfil" class="imagen img-circle">
+                @else
+                <img src="/img/default.jpg" alt="Imagen perfil" class="imagen img-circle" width="215px" height="215px">
+                @endif
+                <form method="POST" action="/admin/users/updateImg" enctype="multipart/form-data" id="formImg" style="display: none">
+                    <input type="file" class="archivo" name="imagen" id="imagen">
+                </form>
             </div>
             <div class="col-md-12">
                 <a href="#"><img src="/img/flogo.png" alt="facebook logo" width="50px"></a>
@@ -16,6 +23,7 @@
         <div class="panel panel-default">
         <div class="panel-heading">Datos personales</div>
                 <div class="panel-body">
+                    
                     <div class="col-md-6 col-lg-6">
                         <h3>Nombre</h3><p>{{$user->nombre}}</p>
                     </div>

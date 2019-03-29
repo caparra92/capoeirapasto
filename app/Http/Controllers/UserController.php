@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateUsersRequest;
 use App\User;
+Use Image;
 
 class UserController extends Controller
 {
@@ -12,6 +14,20 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    protected function random_string()
+    {
+        $key = '';
+        $keys = array_merge( range('a','z'), range(0,9) );
+
+        for($i=0; $i<10; $i++)
+        {
+            $key .= $keys[array_rand($keys)];
+        }
+
+        return $key;
+    }
+
     public function index()
     {
         $users = User::all();
@@ -34,8 +50,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUsersRequest $request)
     {
+        $validated = $request->validated();
         $user = new User;
         $user->nombre = $request->nombre;
         $user->apellido = $request->apellido;
@@ -112,5 +129,18 @@ class UserController extends Controller
         $user->delete();
         flash('Usuario eliminado con éxito!!','danger')->important();
         return redirect('/admin/users/');
+    }
+
+    public function updateImg(Request $request){
+        $user = User::find(auth()->id());
+        $ruta = public_path().'/img/';
+        $imagen_original = $request->file('imagen');
+        $imagen = Image::make($imagen_original);
+        $temp_name = $this->random_string() . '.' . $imagen_original->getClientOriginalExtension();
+        $imagen->resize(215,215);
+        $imagen->save($ruta . $temp_name, 96);
+        $user->path = $temp_name;
+        $user->save();
+        return response()->json($user->path);
     }
 }

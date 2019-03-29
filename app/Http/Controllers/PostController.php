@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str as Str;
 Use Image;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -85,14 +86,34 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        $meses = DB::select('select distinct MONTHNAME(posts.created_at) as mes,MONTH(created_at) as mesNum from posts order by mesNum');
-        $post_related = DB::select('Select * from posts ORDER BY id DESC limit 3');
-        foreach($meses as $mes){
-            $pm = DB::table('posts')
-                ->whereMonth('created_at',$mes->mesNum)
-                ->get();
+        foreach($posts as $key=>$post){
+            $fechapub = new Carbon($post->updated_at);
+            $fechapub = $fechapub->toFormattedDateString();
+            $post->fechapub = $fechapub;
         }
-        return view('welcome')->with('posts', $posts)->with('post_related',$post_related)->with('meses',$meses)->with('pm',$pm);
+
+        $meses = DB::select('select created_at, MONTH(created_at) as mesNum, MONTHNAME(created_at) as mes from posts group by mes order by mesNum');
+        //$meses = $meses->groupby('mes');       
+        //dd($meses);
+        $post_related = DB::select('Select * from posts ORDER BY id DESC limit 3');
+        foreach($post_related as $key=>$related){
+            $fechapub = new Carbon($related->updated_at);
+            $fechapub = $fechapub->toFormattedDateString();
+            $related->fechapub = $fechapub;
+            //dd($related);
+        }
+        foreach($meses as $key=>$mes){
+            $obj = new Carbon($mes->created_at);
+            $fecha = $obj->format('Y-m-d');
+            $mesLargo = $obj->format('F');
+            $mesNum = $obj->format('m');
+            $postsMes = DB::table('posts')
+                ->whereMonth('created_at',$mes->mesNum)->get();
+            $mes->posts = $postsMes;
+        }
+        //dd($post_related);
+        //dd($meses);
+        return view('welcome',compact('posts','post_related','meses','postsMes','fechapub'));
     }
 
     public function post($slug){
