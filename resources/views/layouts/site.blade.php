@@ -30,9 +30,9 @@
       <div class="collapse navbar-collapse text-center" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><a href="/" class="nlink">Inicio</a></li>
-          <li><a href="/noticias" class="nlink">Noticias</a></li>
-          <li><a href="musica" class="nlink">Musica</a></li>
-          <li><a href="/eventos" class="nlink">Eventos</a></li>
+          @foreach($categories as $category)
+          <li><a href="/post/{{$category->nombre}}" class="nlink">{{$category->nombre}}</a></li>
+          @endforeach
           <li><a href="/tienda" class="nlink">Tienda</a></li>
           </ul>
           @if (Route::has('login'))

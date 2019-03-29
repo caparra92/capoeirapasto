@@ -44,6 +44,9 @@ Route::get('/admin/categories/new', 'CategoriaController@create')->middleware('a
 Route::get('/admin/categories/edit/{id}', 'CategoriaController@edit')->middleware('auth');
 Route::get('/admin/categories/delete/{id}', 'CategoriaController@destroy')->middleware('auth');
 
+//categoria blog
+Route::get('/post/{nombre}', 'CategoriaController@category');
+
 Route::post('/admin/categories/store', 'CategoriaController@store')->middleware('auth');
 Route::post('/admin/categories/update/{id}', 'CategoriaController@update')->middleware('auth');
 

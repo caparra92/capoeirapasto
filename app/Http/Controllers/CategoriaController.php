@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Categoria;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -55,7 +56,8 @@ class CategoriaController extends Controller
      */
     public function show($id)
     {
-        //
+        $categories = Categoria::all();
+        return view('layouts.site')->with('categories',$categories);
     }
 
     /**
@@ -101,5 +103,11 @@ class CategoriaController extends Controller
         $category->delete();
         flash('Categoria eliminada con éxito!!','danger')->important();
         return redirect('/admin/categories/'); 
+    }
+
+    public function category($nombre){
+        $category = Categoria::where('nombre','=',$nombre)->get();
+        $post_related = DB::select('Select * from posts ORDER BY id DESC limit 3');
+        return view('/categories/category')->with('post_related',$post_related)->with('category',$category);
     }
 }
