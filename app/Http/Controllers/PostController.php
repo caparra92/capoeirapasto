@@ -85,6 +85,7 @@ class PostController extends Controller
     public function show()
     {
         $posts = Post::all();
+        $categories = Categoria::all();
 
         foreach($posts as $key=>$post){
             $fechapub = new Carbon($post->updated_at);
@@ -113,7 +114,7 @@ class PostController extends Controller
         }
         //dd($post_related);
         //dd($meses);
-        return view('welcome',compact('posts','post_related','meses','postsMes','fechapub'));
+        return view('welcome',compact('posts','post_related','meses','postsMes','fechapub','categories'));
     }
 
     public function post($slug){

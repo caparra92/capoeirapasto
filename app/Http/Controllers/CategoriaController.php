@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Categoria;
+use App\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -56,8 +57,7 @@ class CategoriaController extends Controller
      */
     public function show($id)
     {
-        $categories = Categoria::all();
-        return view('layouts.site')->with('categories',$categories);
+        
     }
 
     /**
@@ -107,7 +107,10 @@ class CategoriaController extends Controller
 
     public function category($nombre){
         $category = Categoria::where('nombre','=',$nombre)->get();
+        foreach($category as $cat){
+            $posts = Post::where('categoria_id','=',$cat->id);
+        }
         $post_related = DB::select('Select * from posts ORDER BY id DESC limit 3');
-        return view('/categories/category')->with('post_related',$post_related)->with('category',$category);
+        return view('/categories/category',compact('post_related','category'));
     }
 }

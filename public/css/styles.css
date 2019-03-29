@@ -141,7 +141,15 @@
   .aside-2>h5 {
 		border-bottom: 1px solid rgb(225, 247, 31);
 	/*background: hotpink;*/
-  }
+	}
+	
+	.linkPostCat{
+		color: rgb(4, 94, 11) !important;
+	}
+
+	.linkPostCat:hover{
+		color: rgb(9, 158, 21) !important;
+	}
   
   @media all and (min-width: 600px) {
 	.asideF { flex: 1 0 0; }

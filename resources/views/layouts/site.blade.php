@@ -30,9 +30,10 @@
       <div class="collapse navbar-collapse text-center" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><a href="/" class="nlink">Inicio</a></li>
-          @foreach($categories as $category)
-          <li><a href="/post/{{$category->nombre}}" class="nlink">{{$category->nombre}}</a></li>
-          @endforeach
+          <li><a href="/category/musica" class="nlink">Musica</a></li>
+          <li><a href="/category/tecnica" class="nlink">Tecnica</a></li>
+          <li><a href="/category/eventos" class="nlink">Eventos</a></li>
+          <li><a href="/category/noticias" class="nlink">Noticias</a></li>
           <li><a href="/tienda" class="nlink">Tienda</a></li>
           </ul>
           @if (Route::has('login'))
@@ -63,7 +64,7 @@
     @foreach($post_related as $related)
     <div class="itemCard col-md-4">
         <div class="card">
-        <img class="card-img-top" src="/img/{{$related->path}}" alt="Card image cap" width="300px" height="200px">
+        <img class="card-img-top" src="/img/{{$related->path}}" alt="Card image cap" width="200px" height="150px">
         <div class="card-body">
             <h5 class="card-title">{{$related->titulo}}</h5>
             <p class="card-text"></p>
@@ -74,7 +75,31 @@
         </div>
         </div>
     </div>
-    @endforeach    
+    @endforeach 
+
+    <!--disqus-->
+    <div id="disqus_thread"></div>
+    <script>
+
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://capoeirapasto-ca.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+    <!--fin disqus-->   
 </div>
   <!-- Footer -->
 <footer class="page-footer font-small bg-primary pt-4 mt-4" style="padding-top:20px">
@@ -154,6 +179,9 @@
 <script src="/adminlte/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/js/main.js"></script>
 <script src="/adminlte/js/adminlte.min.js"></script>
+
+<!--disqis-->
+<script id="dsq-count-scr" src="//capoeirapasto-ca.disqus.com/count.js" async></script>
 </body>
 
 </html>
