@@ -229,3 +229,68 @@
 	cursor: pointer;
 }
 
+.fondo {
+	background: rgba(220, 255, 122,1);
+	background: -moz-linear-gradient(left, rgba(220, 255, 122,1) 0%, rgba(118, 201, 41) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(220, 255, 122,1)), color-stop(100%, rgba(145,232,66,1)));
+	background: -webkit-linear-gradient(left, rgba(220, 255, 122,1) 0%, rgb(118, 201, 41) 100%);
+	background: -o-linear-gradient(left, rgba(220, 255, 122,1) 0%, rgba(118, 201, 41) 100%);
+	background: -ms-linear-gradient(left, rgba(220, 255, 122,1) 0%, rgba(118, 201, 41) 100%);
+	background: linear-gradient(to right, rgba(220, 255, 122,1) 0%, rgba(118, 201, 41) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842', GradientType=1 );
+}
+
+.form-login {
+	padding-top:50px;
+	margin-top: 80px;
+	background-color: rgba(223, 226, 53, 0.7);
+	border: none;
+
+}
+
+.btn-login {
+	width: 100% !important;
+	height: 3.5em;
+	background-color: rgb(18, 212, 44);
+}
+
+.link-green {
+	color:#0a850a;
+	text-decoration: none;
+}
+
+.navbar-toggle:hover {
+	background-color: #aad412 !important;
+}
+
+.navbar-toggle:active {
+	background-color: #0a850a !important;
+}
+
+.navbar-toggle:visited {
+	background-color: #0a850a !important;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #aad412;
+}
+
+.navbar-default .navbar-toggle:hover .icon-bar {
+	background-color: #fff;
+}
+
+.caja {
+	height: 3em;
+}
+
+.form-control:focus {
+  border-color: #9ae966;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(139, 233, 102, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(139, 233, 102, 0.6);
+}
+
+
+
+
+
