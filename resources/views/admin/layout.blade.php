@@ -50,11 +50,11 @@
           <li class="dropdown messages-menu">
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
+              <i class="fa fa-dollar"></i>
+              <span class="label label-danger">4</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
+              <li class="header">Tienes 4 pagos pendientes</li>
               <li>
                 <!-- inner menu: contains the messages -->
                 <ul class="menu">
@@ -85,11 +85,11 @@
           <li class="dropdown notifications-menu">
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
+              <i class="fa fa-comments"></i>
               <span class="label label-warning">10</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
+              <li class="header">Tienes 10 comentarios en tus post</li>
               <li>
                 <!-- Inner Menu: contains the notifications -->
                 <ul class="menu">
