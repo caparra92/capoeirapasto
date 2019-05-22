@@ -12,7 +12,7 @@ class Pago extends Model
 
     public function users(){
 
-        return $this->belongsToMany('App\User')->withPivot('estado','fecha')->withTimestamps();
+        return $this->belongsToMany('App\User')->withPivot('estado','fecha_asignacion','fecha_pago')->withTimestamps();
 
     }
 }

@@ -29,7 +29,7 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="/home" class="logo">
+    <a href="/" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><img src="/capoeira.svg" alt="CapoeiraPasto" width="50px" height="25px"></span>
       <!-- logo for regular state and mobile devices -->
@@ -47,14 +47,15 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
+          @role('admin')
           <li class="dropdown messages-menu">
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-dollar"></i>
-              <span class="label label-danger">4</span>
+              <span class="label label-danger">{{$Npendientes}}</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">Tienes 4 pagos pendientes</li>
+              <li class="header">Tienes {{$Npendientes}} usuarios con pagos pendientes</li>
               <li>
                 <!-- inner menu: contains the messages -->
                 <ul class="menu">
@@ -66,18 +67,16 @@
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                        Ver pagos pendientes
+                        <small><i class="fa fa-dollar"></i>{{$Npendientes}}</small>
                       </h4>
-                      <!-- The message -->
-                      <p>Why not buy a new awesome theme?</p>
                     </a>
                   </li>
                   <!-- end message -->
                 </ul>
                 <!-- /.menu -->
               </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
+              <li class="footer"><a href="{{url('admin/pagos/user')}}">Ir a pagos</a></li>
             </ul>
           </li>
           <!-- /.messages-menu -->
@@ -86,61 +85,50 @@
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-comments"></i>
-              <span class="label label-warning">10</span>
+              <span class="label label-warning">{{$Nposts}}</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">Tienes 10 comentarios en tus post</li>
+              <li class="header">Posts publicados</li>
               <li>
                 <!-- Inner Menu: contains the notifications -->
                 <ul class="menu">
                   <li><!-- start notification -->
                     <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                      <i class="fa fa-paste text-aqua"></i> Tienes {{$Nposts}} post publicados
                     </a>
                   </li>
                   <!-- end notification -->
                 </ul>
               </li>
-              <li class="footer"><a href="#">View all</a></li>
+              <li class="footer"><a href="/admin/posts">Ver posts</a></li>
             </ul>
           </li>
           <!-- Tasks Menu -->
           <li class="dropdown tasks-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
+              <i class="fa fa-users"></i>
+              <span class="label label-success">{{$Nusers}}</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
+              <li class="header">Usuarios registrados</li>
               <li>
                 <!-- Inner menu: contains the tasks -->
                 <ul class="menu">
                   <li><!-- Task item -->
-                    <a href="#">
-                      <!-- Task title and progress text -->
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <!-- The progress bar -->
-                      <div class="progress xs">
-                        <!-- Change the css width attribute to simulate progress -->
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
+                    <a href="/admin/users">
+                      <i class="fa fa-users text-aqua"></i> Tienes {{$Nusers}} usuarios registrados
                     </a>
                   </li>
                   <!-- end task item -->
                 </ul>
               </li>
               <li class="footer">
-                <a href="#">View all tasks</a>
+                <a href="#">Ver todo</a>
               </li>
             </ul>
           </li>
+          @endrole
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
@@ -156,8 +144,8 @@
                 <img src="/img/{{auth()->user()->path}}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ auth()->user()->nombre }} - Web Developer
-                  <small>Miembro desde Nov. 2018</small>
+                  {{ auth()->user()->nombre }} - {{auth()->user()->roles[0]->display_name}}
+                  <small>Miembro desde {{ auth()->user()->created_at->format('M d Y')  }}</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -232,6 +220,39 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">CAPOEIRA PASTO</li>
         <!-- Optionally, you can add icons to the links -->
+        @role('admin')
+        <li class="treeview">
+          <a href="#"><i class="fa fa-rss-square"></i> <span>BLOG</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="treeview">
+            <a href="#"><i class="fa fa-tags"></i> <span>CATEGORIAS</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="/admin/categories">VER CATEGORIAS</a></li>
+              <li><a href="/admin/categories/new">CREAR CATEGORIA</a></li>
+            </ul>
+            </li>
+            <li class="treeview">
+            <a href="#"><i class="fa fa-paste"></i> <span>POSTS</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="/admin/posts">VER POSTS</a></li>
+              <li><a href="/admin/posts/new">CREAR POST</a></li>
+            </ul>
+          </li>
+          </ul>
+        </li>
+        @endrole
         <li class="treeview">
           <a href="#"><i class="fa fa-user"></i> <span>USUARIOS</span>
           <span class="pull-right-container">
@@ -239,31 +260,12 @@
               </span>
           </a>
           <ul class="treeview-menu">
+          @role('admin')
             <li><a href="/admin/users">VER USUARIOS</a></li>
+            <li><a href="/entrust-gui/users">ROLES Y PERMISOS</a></li>
             <li><a href="/admin/users/new">AGREGAR USUARIO</a></li>
+          @endrole
             <li><a href="/admin/users/profile/{{auth()->user()->id}}">MI PERFIL</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-bookmark"></i> <span>CATEGORIAS</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="/admin/categories">VER CATEGORIAS</a></li>
-            <li><a href="/admin/categories/new">CREAR CATEGORIA</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-paste"></i> <span>POSTS</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="/admin/posts">VER POSTS</a></li>
-            <li><a href="/admin/posts/new">CREAR POST</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -273,12 +275,27 @@
               </span>
           </a>
           <ul class="treeview-menu">
+          @role('admin')
             <li><a href="/admin/pagos">PRODUCTOS Y SERVICIOS</a></li>
             <li><a href="/admin/pagos/new">AGREGAR SERVICIO</a></li>
             <li><a href="/admin/pagos/user">PAGOS USUARIOS</a></li>
+          @endrole
             <li><a href="/admin/pagos/profile/{{auth()->user()->id}}">MIS PAGOS</a></li>
           </ul>
         </li>
+          @role('admin')
+        <li class="treeview">
+          <a href="#"><i class="fa fa-bank"></i> <span>CAJAS</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/cajas">CAJAS</a></li>
+            <li><a href="/admin/cajas/new">AGREGAR CAJA</a></li>
+          </ul>
+        </li>
+          @endrole
       </ul>
       <!-- /.sidebar-menu -->
     </section>

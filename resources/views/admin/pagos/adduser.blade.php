@@ -21,9 +21,15 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="fecha" class="col-md-4 control-label">Fecha</label>
+                            <label for="fecha_asignacion" class="col-md-4 control-label">Fecha ingreso</label>
                             <div class="col-md-6">
-                                <input type="date" name="fecha" id="fecha" class="form-control">
+                                <input type="date" name="fecha_asignacion" id="fecha_asignacion" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha_pago" class="col-md-4 control-label">Fecha de pago</label>
+                            <div class="col-md-6">
+                                <input type="date" name="fecha_pago" id="fecha_pago" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">

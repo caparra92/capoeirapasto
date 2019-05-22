@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('adminlte/bootstrap/dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="/adminlte/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/adminlte/plugins/font-awesome/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('adminlte/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
     <title>Capoeira Pasto</title>
 </head>
 
 <body class="hold-transition sidebar-mini">
   <header class="header">   
-      <img src="/img/banner1.jpeg" alt="banner" class="img-responsive"> 
+      <img src="/img/banner.jpg" alt="banner" class="img-responsive"> 
   </header>
   <nav class="navbar navbar-inverse" style="background-color:#33b749">
     <div class="container-fluid">
@@ -32,12 +32,12 @@
       </div>
       <div class="collapse navbar-collapse text-center" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/" class="nlink">Inicio</a></li>
-          <li><a href="/category/musica" class="nlink">Musica</a></li>
-          <li><a href="/category/tecnica" class="nlink">Tecnica</a></li>
-          <li><a href="/category/eventos" class="nlink">Eventos</a></li>
-          <li><a href="/category/noticias" class="nlink">Noticias</a></li>
-          <li><a href="/tienda" class="nlink">Tienda</a></li>
+          <li><a href="/" class="nlink">Home</a></li>
+          <li><a href="/category/musica" class="nlink">Music</a></li>
+          <li><a href="/category/tecnica" class="nlink">Tecnic</a></li>
+          <li><a href="/category/eventos" class="nlink">Events</a></li>
+          <li><a href="/category/noticias" class="nlink">News</a></li>
+          <li><a href="/tienda" class="nlink">Store</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li style="height: 50px"><a href="#"><img src="/img/IconBrasil.png" class="center" alt="brasil-icon" width="45px" height="40px"></a></li>
@@ -65,7 +65,7 @@
   
   </section>
   <div class="container" style="padding-bottom:20px;">
-    <h2>Post relacionados</h2>
+    <h2>Related Posts</h2>
     @foreach($post_related as $related)
     <div class="itemCard col-md-4">
         <div class="card">
@@ -118,13 +118,13 @@
       <!-- Content -->
       <img src="/abolicao.png" alt="capoeira abolicao" width="50px" height="55px">
       <h5 class="text-uppercase">Capoeira Abolicao Pasto</h5>
-      <p>Visita nuestras redes sociales para estar actualizado con las ultimas noticias, videos y eventos.</p>
+      <p>Visit our social networks to be updated with the latest news, videos and events.</p>
     </div>
 
     <hr class="clearfix w-100 d-md-none pb-3">
     <div class="col-md-3 mb-md-0 mb-3">
 
-        <h5 class="text-uppercase">Redes Sociales</h5>
+        <h5 class="text-uppercase">Social links</h5>
 
         <ul class="list-unstyled">
           <li>
@@ -145,20 +145,20 @@
       <div class="col-md-3 mb-md-0 mb-3">
 
         <!-- Links -->
-        <h5 class="text-uppercase">Enlaces de Interés</h5>
+        <h5 class="text-uppercase">Links of interest</h5>
 
         <ul class="list-unstyled">
           <li>
-            <a href="#!" class="link">Música</a>
+            <a href="#!" class="link">Music</a>
           </li>
           <li>
-            <a href="#!" class="link">Técnica</a>
+            <a href="#!" class="link">Tecnic</a>
           </li>
           <li>
-            <a href="#!" class="link">Eventos</a>
+            <a href="#!" class="link">Events</a>
           </li>
           <li>
-            <a href="#!" class="link">Contacto</a>
+            <a href="#!" class="link">Contact</a>
           </li>
         </ul>
 
@@ -179,11 +179,11 @@
 
 </footer>
 <!-- Footer -->
-<script src="{{ asset('adminlte/plugins/jquery/dist/jquery.min.js') }}"></script>
+<script src="/adminlte/plugins/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="{{ asset('adminlte/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/main.js') }}"></script>
-<script src="{{ asset('adminlte/js/adminlte.min.js') }}"></script>
+<script src="/adminlte/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/adminlte/js/adminlte.min.js"></script>
 
 <!--disqis-->
 <script id="dsq-count-scr" src="//capoeirapasto-ca.disqus.com/count.js" async></script>

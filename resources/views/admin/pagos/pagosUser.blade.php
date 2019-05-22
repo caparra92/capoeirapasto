@@ -17,11 +17,12 @@
         <caption><h2>Pagos usuarios</h2></caption>
         <thead>
             <tr>
-                <th class="text-center">Estado</th>
-                <th class="text-center">Fecha</th>
-                <th class="text-center">Usuario</th>
-                <th class="text-center">Pago</th>
-                <th class="text-center">Valor</th>
+                <th>Estado</th>
+                <th>Ingresado</th>
+                <th>A pagar</th>
+                <th>Usuario</th>
+                <th>Producto</th>
+                <th>Valor</th>
                 <th class="text-center">Acciones</th>
             </tr>
         </thead>
@@ -29,11 +30,22 @@
             <tr class="fila">
             @foreach($pagos as $pago)
                 <input type="hidden" name="id" id="id" class="id" value="{{$pago->id}}">
-                <td data-label="Estado" class="columna"><p @if($pago->estado=="pendiente")class='pendiente' @else class='pagado' @endif>{{ $pago->estado }}</p></td>
-                <td data-label="Fecha"><p>{{ $pago->fecha }}</p></td>
+                <td data-label="Estado" class="columna">
+                    <p @if($pago->estado=="vencido")
+                            class='vencido' 
+                        @elseif($pago->estado=="pendiente")
+                            class='pendiente' 
+                        @else 
+                            class='pagado' 
+                        @endif>
+                        {{ $pago->estado }}
+                    </p>
+                </td>
+                <td data-label="Ingresado"><p>{{ $pago->fecha_asignacion }}</p></td>
+                <td data-label="A pagar"><p>{{ $pago->fecha_pago }}</p></td>
                 <td data-label="Usuario"><p>{{ $pago->nombre}}</p></td>
-                <td data-label="Pago"><p>{{ $pago->detalle }}</p></td>
-                <td data-label="Valor"><p>{{ number_format($pago->valor) }}</p></td>
+                <td data-label="Producto"><p>{{ $pago->detalle }}</p></td>
+                <td data-label="Valor"><p>{{ '$ ' .number_format($pago->valor,2,",",".") }}</p></td>
                 <td data-label="Acciones" class="acciones text-center">
                     <a href="/admin/pagos/user/edit/{{$pago->id}}">
                         <button class="btn btn-warning"><i class="fa fa-pencil"></i>
@@ -45,8 +57,8 @@
                         <span></span>
                         </button>   
                     </a>
-                    @if($pago->estado=="pendiente")
-                    <a href="/admin/pagos/user/estado/{{$pago->id}}">
+                    @if($pago->estado=="pendiente" || $pago->estado=="vencido")
+                    <a href="/admin/pagos/caja/{{$pago->id}}">
                         <button class="btn btn-success"><i class="fa fa-dollar"></i>
                         <span></span>
                         </button>
@@ -56,8 +68,9 @@
             </tr>
             @endforeach
             <tr>
-                <td><h3>Pagados: </h3>@foreach($total_pag as $pagados)<p>{{number_format($pagados->total_pagados)}}</p>@endforeach</td>
-                <td><h3>Pendientes: </h3>@foreach($total_pend as $pendientes)<p>{{number_format($pendientes->total_pagados)}}</p>@endforeach</td>
+                <td><h3>Pagados: </h3>@foreach($total_pag as $pagados)<p>{{'$ '.number_format($pagados->total_pagados,2,",",".")}}</p>@endforeach</td>
+                <td><h3>Pendientes: </h3>@foreach($total_pend as $pendientes)<p>{{'$ '.number_format($pendientes->total_pagados,2,",",".")}}</p>@endforeach</td>
+                <td><h3>Vencidos: </h3>@foreach($total_venc as $vencidos)<p>{{'$ '.number_format($vencidos->total_pagados,2,",",".")}}</p>@endforeach</td>
             </tr>
 
             <!-- Modal -->
@@ -103,6 +116,11 @@
                         <div class="form-group">
                             <div class="radio col-md-10">
                                 <label><input type="radio" name="estado" id="pagado" value="pagado" required>Pagado</label>
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <div class="radio col-md-10">
+                                <label><input type="radio" name="estado" id="vencido" value="vencido" required>Vencido</label>
                             </div>
                         </div> 
                 </div>

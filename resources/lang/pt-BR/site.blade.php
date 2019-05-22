@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('adminlte/bootstrap/dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="/adminlte/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/adminlte/plugins/font-awesome/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('adminlte/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
     <title>Capoeira Pasto</title>
 </head>
 
 <body class="hold-transition sidebar-mini">
   <header class="header">   
-      <img src="/img/banner1.jpeg" alt="banner" class="img-responsive"> 
+      <img src="/img/banner.jpg" alt="banner" class="img-responsive"> 
   </header>
   <nav class="navbar navbar-inverse" style="background-color:#33b749">
     <div class="container-fluid">
@@ -179,11 +179,11 @@
 
 </footer>
 <!-- Footer -->
-<script src="{{ asset('adminlte/plugins/jquery/dist/jquery.min.js') }}"></script>
+<script src="/adminlte/plugins/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="{{ asset('adminlte/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/main.js') }}"></script>
-<script src="{{ asset('adminlte/js/adminlte.min.js') }}"></script>
+<script src="/adminlte/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/adminlte/js/adminlte.min.js"></script>
 
 <!--disqis-->
 <script id="dsq-count-scr" src="//capoeirapasto-ca.disqus.com/count.js" async></script>

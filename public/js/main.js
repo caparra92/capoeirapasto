@@ -35,27 +35,29 @@ $(document).ready(function(){
           
           if(resp[i].estado == "pagado"){
             clase="pagado";
-            $('#pagos tbody').append('<tr><td data-label="Id">'+
-                                    resp[i].id+'</td>'+'<td data-label="Estado"><p class="'+clase+
+            $('#pagos tbody').append('<tr>'+
+                                    '</td>'+'<td data-label="Estado"><p class="'+clase+
                                     '">'+resp[i].estado+'</p></td>'+
-                                    '<td data-label="Fecha">'+resp[i].fecha+
+                                    '<td data-label="Asignado">'+resp[i].fecha_asignacion+
+                                    '</td>'+'<td data-label="A pagar">'+resp[i].fecha_pago+
                                     '</td>'+'<td data-label="Usuario">'+resp[i].nombre+
-                                    '</td>'+'<td data-label="Pago">'+resp[i].detalle+
+                                    '</td>'+'<td data-label="Producto">'+resp[i].detalle+
                                     '</td>'+'<td data-label="Valor">'+resp[i].valor+
-                                    '</td><td data-label="Acciones" class="final"><a href="/admin/pagos/user/edit/'+
+                                    '</td><td data-label="Acciones" class="final text-center"><a href="/admin/pagos/user/edit/'+
                                     resp[i].id+'"><button class="btn btn-warning"><i class="fa fa-pencil"></i><span></span></button></a>&nbsp<a href="/admin/pagos/user/delete/'+
                                     resp[i].id+'"><button class="btn btn-danger"><i class="fa fa-trash"></i><span></span></button></a></tr>');
           }
           else {
             clase="pendiente";
-            $('#pagos tbody').append('<tr><td data-label="Id">'+
-                                    resp[i].id+'</td>'+'<td data-label="Estado"><p class="'+clase+
+            $('#pagos tbody').append('<tr>'+
+                                    '</td>'+'<td data-label="Estado"><p class="'+clase+
                                     '">'+resp[i].estado+'</p></td>'+
-                                    '<td data-label="Fecha">'+resp[i].fecha+
+                                    '<td data-label="Asignado">'+resp[i].fecha_asignacion+
+                                    '</td>'+'<td data-label="A pagar">'+resp[i].fecha_pago+
                                     '</td>'+'<td data-label="Usuario">'+resp[i].nombre+
                                     '</td>'+'<td data-label="Pago">'+resp[i].detalle+
                                     '</td>'+'<td data-label="Valor">'+resp[i].valor+
-                                    '</td><td data-label="Acciones" class="final"><a href="/admin/pagos/user/edit/'+
+                                    '</td><td data-label="Acciones" class="final text-center"><a href="/admin/pagos/user/edit/'+
                                     resp[i].id+'"><button class="btn btn-warning"><i class="fa fa-pencil"></i><span></span></button></a>&nbsp<a href="/admin/pagos/user/delete/'+
                                     resp[i].id+'"><button class="btn btn-danger"><i class="fa fa-trash"></i><span></span></button></a>'+
                                     '&nbsp<a href="/admin/pagos/user/estado/'+resp[i].id+'">'+
@@ -66,6 +68,7 @@ $(document).ready(function(){
       },
       error: function(resp, textStatus, error){
         console.log(textStatus);
+        console.log(error);
         console.log(resp);
       }
     });

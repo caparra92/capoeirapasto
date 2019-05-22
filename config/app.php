@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'CapoeiraPasto'),
 
     /*
     |--------------------------------------------------------------------------
@@ -165,6 +165,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        
 
         /*
          * Package Service Providers...
@@ -182,6 +183,8 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         //intervention-image
         Intervention\Image\ImageServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
+        Acoustep\EntrustGui\EntrustGuiServiceProvider::class,
 
     ],
 
@@ -233,7 +236,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Flash'=>Laracasts\Flash\Flash::class,
         'Image' => Intervention\Image\Facades\Image::class,
-
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        
     ],
 
 ];

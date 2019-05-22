@@ -3,55 +3,10 @@
 @section('content')
 
 <!--inicio slider -->
-<header class="header hidden-xs">
-    <div class="container">
-        <div class="col-md-12">
-            <div id="carousel-1" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-1" data-slide-to="1"></li>
-                    <li data-target="#carousel-1" data-slide-to="2"></li>
-                </ol>
-
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img src="https://picsum.photos/1200/300" alt="Imagen 1" class="img-responsive">
-                        <div class="carousel-caption hidden-xs hidden-sm">
-                            <h3>Este es el slide 1</h3>
-                            <p>lorem isum dolor</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img src="https://picsum.photos/1200/300/?random" alt="Imagen 2" class="img-responsive">
-                        <div class="carousel-caption hidden-xs hidden-sm">
-                            <h3>Este es el slide 2</h3>
-                            <p>lorem isum dolor</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img src="https://picsum.photos/1200/300?random" alt="Imagen 3" class="img-responsive">
-                        <div class="carousel-caption hidden-xs hidden-sm">
-                            <h3>Este es el slide 3</h3>
-                            <p>lorem isum dolor</p>
-                        </div>
-                    </div>
-                </div>
-                <!--controles-->
-                <a href="#carousel-1" class="left carousel-control" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                    <span class="sr-only">Anterior</span>
-                </a>
-                <a href="#carousel-1" class="right carousel-control" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span class="sr-only">Siguiente</span>
-                </a>
-            </div>
-        </div>
-    </div>
-</header>
-
 <!-- fin slider -->
-    
+<!-- inicio nav -->
+
+<!-- fin nav -->
 <div class="contenido" id="comentBox">
     <aside class="asideF aside-1">
     <ul class="sidebar-menu" data-widget="tree">
@@ -83,7 +38,7 @@
     <article class="main">
         <h2 class="text-left">{{ $post->titulo }}</h2>
         <i class="fa fa-folder"></i>
-        <span></span><a href="/{{strtolower($post->categoria->nombre)}}"><small>{{$post->categoria->nombre}}</small></a>
+        <span></span><a href="/category/{{strtolower($post->categoria->nombre)}}"><small>{{$post->categoria->nombre}}</small></a>
         <img src="img/{{$post->path}}" alt="imagenPost" class="img-responsive" style="padding-top:20px;padding-bottom:30px;" width="600px">
             <p>{{ $post->descripcion }}</p>
         

@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Capoeira Pasto</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -30,7 +30,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img alt="capoeira pasto" src="/capoeira.svg" width="30px" height="30px" class="d-inline-block align-top">
+                        <img alt="capoeira pasto" src="{{ url('/capoeira.svg') }}" width="30px" height="30px" class="d-inline-block align-top">
                     </a>
                 </div>
 
@@ -44,8 +44,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}" class="nlink">Login</a></li>
-                            <li><a href="{{ route('register') }}" class="nlink">Register</a></li>
+                            <li><a href="{{ route('login') }}" class="nlink">Ingresar</a></li>
+                            <li><a href="{{ route('register') }}" class="nlink">Registro</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>

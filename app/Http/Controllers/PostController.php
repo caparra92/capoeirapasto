@@ -148,13 +148,17 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->titulo = $request->get('titulo');
         $post->descripcion = $request->get('descripcion');
-        $ruta = public_path().'/img/';
-        $imagen_original = $request->file('imagen');
-        $imagen = Image::make($imagen_original);
-        $temp_name = $this->random_string() . '.' . $imagen_original->getClientOriginalExtension();
-        $imagen->resize(600,500);
-        $imagen->save($ruta . $temp_name, 100);
-        $post->path = $temp_name;
+        if($request->file()){
+            $ruta = public_path().'/img/';
+            $imagen_original = $request->file('imagen');
+            $imagen = Image::make($imagen_original);
+            $temp_name = $this->random_string() . '.' . $imagen_original->getClientOriginalExtension();
+            $imagen->resize(600,500);
+            $imagen->save($ruta . $temp_name, 100);
+            $post->path = $temp_name;
+        }else{
+           $post->path = $post->path;
+        }
         $post->slug = Str::slug($request->titulo);
         $post->categoria_id = $request->get('categoria');
         $post->user_id = Auth::user()->id;

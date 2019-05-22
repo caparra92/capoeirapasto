@@ -36,7 +36,8 @@
                         <div class="form-group">
                             <label for="imagen" class="col-md-4 control-label">Imagen</label>
                             <div class="col-md-6">
-                                <input type="file" name="imagen" id="imagen" class="form-control">
+                                <img src="/img/{{$post->path}}" alt="imagenPost" class="img-responsive" style="padding-top:20px;padding-bottom:30px;">
+                                <input type="file" name="imagen" id="imagen" class="form-control" value="{{$post->path}}">
                             </div>
                         </div> 
                         <div class="form-group">

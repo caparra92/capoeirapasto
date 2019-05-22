@@ -8,7 +8,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Actualizar usuario</div>
                 <div class="panel-body">
-                    <form method="post" action="/admin/users/update/{{$user->id}}" class="form-horizontal">
+                    <form method="post" action="/admin/users/update/{{$user->id}}" class="form-horizontal" enctype="multipart/form-data">
                     {{ csrf_field() }}
                         <div class="form-group">
                             <label for="nombre" class="col-md-4 control-label">Nombre</label>
@@ -43,7 +43,7 @@
                         <div class="form-group">
                             <label for="password" class="col-md-4 control-label">Password</label>
                             <div class="col-md-6">
-                                <input type="password" name="password" id="password" class="form-control" value="{{ $user->password }}">
+                                <input type="text" name="password" id="password" class="form-control" value="{{ $user->password }}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -56,6 +56,18 @@
                             <label for="email" class="col-md-4 control-label">Email</label>
                             <div class="col-md-6">
                                 <input type="email" class="form-control" name="email" id="email" value="{{ $user->email }}"> 
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="avatar" class="col-md-4 control-label">Avatar</label>
+                            <div class="col-md-6">
+                                @if($user->path)
+                                    <img src="/img/{{$user->path}}" alt="imagenUser" class="img-responsive" width="50px">
+                                @else
+                                    <img src="/img/default.jpg" alt="imagenUser" class="img-responsive" width="50px">
+                                @endif 
+                                <hr>
+                                <input type="file" name="imagen" id="imagen" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">

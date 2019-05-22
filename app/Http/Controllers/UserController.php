@@ -62,6 +62,13 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         $user->usuario  = $request->usuario;
         $user->email = $request->email;
+        $ruta = public_path().'/img/';
+        $imagen_original = $request->file('imagen');
+        $imagen = Image::make($imagen_original);
+        $temp_name = $this->random_string() . '.' . $imagen_original->getClientOriginalExtension();
+        $imagen->resize(215,215);
+        $imagen->save($ruta . $temp_name, 100);
+        $user->path = $temp_name;
 
         $user->save();
         flash('Usuario creado con éxito!!','success')->important();
@@ -102,6 +109,18 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
+        
+        if($request->file()){
+            $ruta = public_path().'/img/';
+            $imagen_original = $request->file('imagen');
+            $imagen = Image::make($imagen_original);
+            $temp_name = $this->random_string() . '.' . $imagen_original->getClientOriginalExtension();
+            $imagen->resize(215,215);
+            $imagen->save($ruta . $temp_name, 100);
+            $user->path = $temp_name;
+        }else{
+           $user->path = $user->path;
+        }
         $user->nombre = $request->get('nombre');
         $user->apellido = $request->get('apellido');
         $user->direccion = $request->get('direccion');

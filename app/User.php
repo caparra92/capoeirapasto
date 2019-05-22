@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
+    use EntrustUserTrait;
     use Notifiable;
 
     /**
@@ -34,7 +36,7 @@ class User extends Authenticatable
 
     public function pagos(){
 
-        return $this->belongsToMany('App\Pago')->withPivot('estado','fecha')->withTimestamps();
+        return $this->belongsToMany('App\Pago')->withPivot('estado','fecha_asignacion','fecha_pago')->withTimestamps();
 
     }
 

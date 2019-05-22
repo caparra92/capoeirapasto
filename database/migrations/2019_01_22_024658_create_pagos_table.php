@@ -21,7 +21,7 @@ class CreatePagosTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('users_pagos', function (Blueprint $table) {
+        Schema::create('pago_user', function (Blueprint $table) {
             $table->increments('id');
             $table->string('estado');
             $table->integer('user_id')->unsigned();
@@ -41,6 +41,6 @@ class CreatePagosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('pagos');
-        Schema::dropIfExists('usuarios_pagos');
+        Schema::dropIfExists('pago_user');
     }
 }

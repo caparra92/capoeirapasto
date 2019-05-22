@@ -11,7 +11,9 @@
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "nesbot/carbon": "1.36.2"
+        "nesbot/carbon": "1.36.2",
+        "zizaco/entrust": "5.2.x-dev",
+        "acoustep/entrust-gui": "@dev"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

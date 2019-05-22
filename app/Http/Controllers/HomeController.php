@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $Nmymensu= DB::table('pago_user')
+                        ->where('user_id','=',Auth::user()->id)
+                        ->where('estado','=','pendiente')->count();
+        return view('admin.dashboard')->with('Nmymensu',$Nmymensu);
     }
 }
