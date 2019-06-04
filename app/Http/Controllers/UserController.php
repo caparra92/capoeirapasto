@@ -183,17 +183,19 @@ class UserController extends Controller
 
     public function storeRoles(Request $request){
         //dd($request->all());
-        $validated = $request->validated();
         $role = new Role();
         $role->name = $request->name;
         $role->display_name = $request->display_name;
         $role->description = $request->description;
-        
-        $role->save();
-        $role->attachPermissions(array($request->permissions));
-        flash('Rol agregado con éxito!!','success')->important();
-        return redirect('/admin/roles');
-        
+        if($role->isInvalid()){
+            flash('Ya existe un rol con ese name/display name','danger')->important();
+            return redirect('/admin/roles/new');
+        }else{
+            $role->save();
+            $role->attachPermissions(array($request->permissions));
+            flash('Rol agregado con éxito!!','success')->important();
+            return redirect('/admin/roles');
+        }
     }
 
     public function editRoles($id){
@@ -223,7 +225,12 @@ class UserController extends Controller
         $role->name = $request->name;
         $role->display_name = $request->display_name;
         $role->description = $request->description;
-        $role->save();
+        if($role->isInvalid()){
+            flash('Ya existe un rol con ese name/display','danger')->important();
+            return redirect('/admin/roles/edit/'.$id);
+        }else{
+            $role->save();
+        }
         if(!$request->permissions){
             flash('Ningun permiso asignado','danger')->important();
             flash('Rol actualizado con éxito!!','warning')->important();
