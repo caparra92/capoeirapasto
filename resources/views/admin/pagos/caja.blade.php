@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-    <div class="col-md-8 col-md-offset-2 col-lg-7">
+    <div class="col-md-4 col-md-offset-2">
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="panel-body">
@@ -16,7 +16,7 @@
                     <input type="hidden" name="pago_id" value="{{$pag->pago_id}}">
                     <input type="hidden" name="user_id" value="{{$pag->user_id}}">
             @endforeach
-                        <div class="col-md-10">
+                        <div class="col-md-10 col-md-offset-1">
                             <label for="caja" class="col-md-4 control-label">Caja</label>
                             <select name="caja" id="caja" class="form-control" required>
                                 <option value="" selected disabled>Seleccione caja..</option>
@@ -27,8 +27,8 @@
                         </div> 
                     </div>
                     <div class="form-group">
-                        <div class="col-md-10">
-                            <button type="submit" class="btn btn-success" id="pagar">
+                        <div class="col-md-10 col-md-offset-1" style="padding-top:20px">
+                            <button type="submit" class="btn btn-success btn-login" id="pagar">
                                 <i class="fa fa-dollar"></i>
                                 <span>Pagar</span>
                             </button>

@@ -63,6 +63,12 @@
                         <span></span>
                         </button>
                     </a>
+                    @else
+                    <a href="{{url('/admin/pagos/recibo/'.$pago->id)}}">
+                        <button class="btn btn-primary"><i class="fa fa-print"></i>
+                        <span></span>
+                        </button>
+                    </a>
                     @endif
                 </td>
             </tr>
