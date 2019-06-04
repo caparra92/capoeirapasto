@@ -158,6 +158,10 @@
   
   @media all and (min-width: 600px) {
 	.asideF { flex: 1 0 0; }
+	.button-xs{
+		width: 100% !important;
+		height: 3.5em;
+	}
   }
   
   @media all and (min-width: 800px) {
@@ -257,6 +261,12 @@
 	width: 100% !important;
 	height: 3.5em;
 	background-color: rgb(18, 212, 44);
+}
+
+.btn-edit {
+	width: 100% !important;
+	height: 3.5em;
+	background-color: #f0ad4e;
 }
 
 .link-green {

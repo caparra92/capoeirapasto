@@ -22,19 +22,19 @@
                 <td data-label="Descripción">{{ $pago->descripcion }}</td>
                 <td data-label="Valor">{{ number_format($pago->valor) }}</td>
                 <td data-label="Acciones">
-                    <a href="/admin/pagos/edit/{{$pago->id}}" title="Editar producto">
+                    <a href="{{url('/admin/pagos/edit/'.$pago->id)}}" title="Editar producto">
                         <button class="btn btn-warning">
                             <i class="fa fa-pencil"></i>
                             <span></span>
                         </button>
                     </a>
-                    <a href="/admin/pagos/delete/{{$pago->id}}" title="Eliminar producto" onclick="return confirm('¿Desea eliminar permanentemente el pago?')">
+                    <a href="{{url('/admin/pagos/delete/'.$pago->id)}}" title="Eliminar producto" onclick="return confirm('¿Desea eliminar permanentemente el pago?')">
                         <button class="btn btn-danger">
                             <i class="fa fa-trash"></i>
                             <span></span>
                         </button>
                     </a>
-                    <a href="/admin/pagos/user/{{$pago->id}}" title="Asignar usuario">
+                    <a href="{{url('/admin/pagos/user/'.$pago->id)}}" title="Asignar usuario">
                         <button class="btn btn-primary">
                             <i class="fa fa-user-plus"></i>
                             <span></span>

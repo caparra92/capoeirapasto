@@ -16,7 +16,7 @@
                     </ul>
                 </div>
                 @endif
-                    <form method="post" action="/admin/users/store" class="form-horizontal">
+                    <form method="post" action="{{url('/admin/users/store')}}" class="form-horizontal">
                     {{ csrf_field() }}
                         <div class="form-group">
                             <label for="nombre" class="col-md-4 control-label">Nombre</label>
@@ -66,9 +66,20 @@
                                 <input type="email" class="form-control" name="email" id="email" placeholder ="Ingrese email"> 
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <input type="submit" class="btn btn-primary" value="Registrar">
+                        <div class="panel-footer">
+                        <div class="col-md-12"><h3>Roles</h3></div>
+                        @foreach($roles as $role)
+                            <div class="form-check">
+                                <div class="col-md-3">
+                                    <input type="radio" name="role" id="{{$role->name}}" value="{{$role->id}}"class="form-check-input">
+                                    <label for="{{$role->name}}" class="form-check-label">{{$role->display_name}}</label>
+                                </div>
+                            </div>
+                        @endforeach
+                            <div class="form-group">
+                                <div class="col-md-12" style="padding-top:30px">
+                                    <input type="submit" class="btn btn-success btn-login" value="Registrar">
+                                </div>
                             </div>
                         </div>
                     </form>

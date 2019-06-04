@@ -9,14 +9,14 @@
                 <!--cierre o apertura -->
                     <div class="pull-right" style="padding-top: 20px; padding-right:20px">
                     @if($caja->estado=="cerrada")
-                    <a href="/admin/cajas/open/{{$caja->id}}" onclick="return confirm('¿Desea dar apertura a la caja?')">
+                    <a href="{{url('/admin/cajas/open/'.$caja->id)}}" onclick="return confirm('¿Desea dar apertura a la caja?')">
                         <button class="btn btn-info">
                             <i class="fa fa-sign-in"></i>
                             <span>Abrir</span>
                         </button>
                     </a>
                     @else
-                    <a href="/admin/cajas/close/{{$caja->id}}" onclick="return confirm('¿Desea cerrar la caja?')">
+                    <a href="{{url('/admin/cajas/close/'.$caja->id)}}" onclick="return confirm('¿Desea cerrar la caja?')">
                         <button class="btn btn-danger">
                             <i class="fa fa-lock"></i>
                             <span>Cerrar</span>

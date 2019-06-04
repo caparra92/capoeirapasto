@@ -31,6 +31,24 @@ Route::get('/admin/users/edit/{id}', ['middleware'=>'auth','uses'=>'UserControll
 Route::get('/admin/users/delete/{id}', ['middleware'=>['auth','role:admin'],'uses'=>'UserController@destroy']);
 Route::get('/admin/users/profile/{id}', 'UserController@show')->middleware('auth');
 
+//roles y permisos
+
+Route::get('/admin/roles',['middleware'=>['auth','role:admin'],'uses'=>'UserController@indexRoles']);
+Route::get('/admin/roles/new',['middleware'=>['auth','role:admin'],'uses'=>'UserController@createRoles']);
+Route::get('/admin/roles/edit/{id}',['middleware'=>['auth','role:admin'],'uses'=>'UserController@editRoles']);
+Route::get('/admin/roles/delete/{id}',['middleware'=>['auth','role:admin'],'uses'=>'UserController@destroyRoles']);
+Route::get('/admin/permissions',['middleware'=>['auth','role:admin'],'uses'=>'UserController@indexPermissions']);
+Route::get('/admin/permissions/new',['middleware'=>['auth','role:admin'],'uses'=>'UserController@createPermissions']);
+Route::get('/admin/permissions/edit/{id}',['middleware'=>['auth','role:admin'],'uses'=>'UserController@editPermissions']);
+Route::get('/admin/permissions/delete/{id}',['middleware'=>['auth','role:admin'],'uses'=>'UserController@destroyPermissions']);
+
+Route::post('/admin/roles/store', 'UserController@storeRoles')->middleware('auth');
+Route::post('/admin/roles/update/{id}', 'UserController@updateRoles')->middleware('auth');
+Route::post('/admin/permissions/store', 'UserController@storePermissions')->middleware('auth');
+Route::post('/admin/permissions/update/{id}', 'UserController@updatePermissions')->middleware('auth');
+Route::post('/admin/roles/permission/new', 'UserController@addPerms')->middleware('auth');
+
+
 Route::post('/admin/users/store', 'UserController@store')->middleware('auth');
 Route::post('/admin/users/update/{id}', 'UserController@update')->middleware('auth');
 Route::post('/admin/users/updateImg','UserController@updateImg')->middleware('auth');

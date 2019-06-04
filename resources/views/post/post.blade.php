@@ -5,8 +5,8 @@
         <div class="col-md-12">
             <h2>{{ $post->titulo }}</h2>
             <i class="fa fa-folder"></i>
-            <span></span><a href="/{{strtolower($post->categoria->nombre)}}"><small>{{$post->categoria->nombre}}</small></a>
-            <img src="../img/{{$post->path}}" alt="imagenPost" class="img-responsive" style="padding-top:20px;padding-bottom:30px;">
+            <span></span><a href="{{url('/'.strtolower($post->categoria->nombre))}}"><small>{{$post->categoria->nombre}}</small></a>
+            <img src="{{url('../img/'.$post->path)}}" alt="imagenPost" class="img-responsive" style="padding-top:20px;padding-bottom:30px;">
             <p>{{ $post->descripcion }}</p>
         </div>
         
@@ -28,7 +28,7 @@
         </div>
         @if (Route::has('login'))
         <div class="col-md-12">
-        <form action="/post/coment" method="post" id="{{$post->id}}" class="formCom">
+        <form action="{{url('/post/coment')}}" method="post" id="{{$post->id}}" class="formCom">
             {{ csrf_field() }}
                 <input type="hidden" name="post_id" id="post_id" value="{{$post->id}}">
                 <div class="form-group">
@@ -46,7 +46,7 @@
                 </div>
               @else
                 <div class="col-md-4" style="padding-top: 10px;">
-                    <p><strong><a href="/login">Inicia sesión</a> para agregar un comentario</strong></p> 
+                    <p><strong><a href="{{url('/login')}}">Inicia sesión</a> para agregar un comentario</strong></p> 
                 </div>
               @endauth
             </form>

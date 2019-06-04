@@ -12,15 +12,15 @@
         <div class="itemCard col-md-8 col-xs-6">
             <div class="card">
                 <div class="card-body">
-                    <a href="/post/{{$post->slug}}" class="linkPostCat"><h2 class="card-title">{{ $post->titulo }}</h2></a>
+                    <a href="{{url('/post/'.$post->slug)}}" class="linkPostCat"><h2 class="card-title">{{ $post->titulo }}</h2></a>
                     <i class="fa fa-folder"></i>
                     <span><small>Publicado en: </small></span>
-                    <a href="/category/{{strtolower($post->categoria->nombre)}}">
+                    <a href="{{url('/category/'.strtolower($post->categoria->nombre))}}">
                         <small>{{$post->categoria->nombre}}</small>
                     </a>  
                     <p class="card-text">
                         <p>{{substr($post->descripcion,0,80) }}...</p>
-                        <a href="/post/{{$post->slug}}">ver más</a> 
+                        <a href="{{url('/post/'.$post->slug)}}">ver más</a> 
                     </p>
                 </div>
                 <div class="card-footer text-muted">

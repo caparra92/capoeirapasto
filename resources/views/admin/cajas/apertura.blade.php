@@ -8,7 +8,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Apertura caja {{$caja->nombre}}</div>
                 <div class="panel-body">
-                    <form method="post" action="/admin/cajas/estado/{{$caja->id}}" class="form-horizontal">
+                    <form method="post" action='{{url("/admin/cajas/estado/".$caja->id)}}' class="form-horizontal">
                     {{ csrf_field() }}
                         <div class="form-group">
                             <label for="fecha" class="col-md-4 control-label">Fecha</label>

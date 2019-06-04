@@ -184,8 +184,7 @@ return [
         //intervention-image
         Intervention\Image\ImageServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
-        Acoustep\EntrustGui\EntrustGuiServiceProvider::class,
-
+        Acoustep\EntrustGui\EntrustGuiServiceProvider::class
     ],
 
     /*

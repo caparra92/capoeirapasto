@@ -29,12 +29,12 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="/" class="logo">
+    <a href="{{url('/')}}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><img src="/capoeira.svg" alt="CapoeiraPasto" width="50px" height="25px"></span>
+      <span class="logo-mini"><img src="{{url('/capoeira.svg')}}" alt="CapoeiraPasto" width="50px" height="25px"></span>
       <!-- logo for regular state and mobile devices -->
       
-      <span class="logo-lg"><img src="/capoeira.svg" alt="CapoeiraPasto" width="45px" height="22px"><b>Capoeira </b>Pasto</span>
+      <span class="logo-lg"><img src="{{url('/capoeira.svg')}}" alt="CapoeiraPasto" width="45px" height="22px"><b>Capoeira </b>Pasto</span>
     </a>
 
     <!-- Header Navbar -->
@@ -63,7 +63,7 @@
                     <a href="#">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <img src="/img/{{auth()->user()->path}}" class="img-circle" alt="User Image">
+                        <img src="{{url('/img/'.auth()->user()->path)}}" class="img-circle" alt="User Image">
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
@@ -100,7 +100,7 @@
                   <!-- end notification -->
                 </ul>
               </li>
-              <li class="footer"><a href="/admin/posts">Ver posts</a></li>
+              <li class="footer"><a href="{{url('/admin/posts')}}">Ver posts</a></li>
             </ul>
           </li>
           <!-- Tasks Menu -->
@@ -116,7 +116,7 @@
                 <!-- Inner menu: contains the tasks -->
                 <ul class="menu">
                   <li><!-- Task item -->
-                    <a href="/admin/users">
+                    <a href="{{url('/admin/users')}}">
                       <i class="fa fa-users text-aqua"></i> Tienes {{$Nusers}} usuarios registrados
                     </a>
                   </li>
@@ -134,14 +134,14 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="/img/{{auth()->user()->path}}" class="user-image" alt="User Image">
+              <img src="{{url('/img/'.auth()->user()->path)}}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs">{{ auth()->user()->nombre }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="/img/{{auth()->user()->path}}" class="img-circle" alt="User Image">
+                <img src="{{url('/img/'.auth()->user()->path)}}" class="img-circle" alt="User Image">
 
                 <p>
                   {{ auth()->user()->nombre }} - {{auth()->user()->roles[0]->display_name}}
@@ -166,7 +166,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="/admin/users/profile/{{auth()->user()->id}}" class="btn btn-default btn-flat">Perfil</a>
+                  <a href="{{url('/admin/users/profile/'.auth()->user()->id)}}" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{ route('logout') }}" class="btn btn-default btn-flat" 
@@ -195,7 +195,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="/img/{{auth()->user()->path}}" class="img-circle" alt="User Image">
+          <img src="{{url('/img/'.auth()->user()->path)}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>{{ auth()->user()->nombre }}&nbsp{{ auth()->user()->apellido }}</p>
@@ -235,8 +235,8 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/admin/categories">VER CATEGORIAS</a></li>
-              <li><a href="/admin/categories/new">CREAR CATEGORIA</a></li>
+              <li><a href="{{url('/admin/categories')}}">VER CATEGORIAS</a></li>
+              <li><a href="{{url('/admin/categories/new')}}">CREAR CATEGORIA</a></li>
             </ul>
             </li>
             <li class="treeview">
@@ -246,8 +246,8 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/admin/posts">VER POSTS</a></li>
-              <li><a href="/admin/posts/new">CREAR POST</a></li>
+              <li><a href="{{url('/admin/posts')}}">VER POSTS</a></li>
+              <li><a href="{{url('/admin/posts/new')}}">CREAR POST</a></li>
             </ul>
           </li>
           </ul>
@@ -261,11 +261,11 @@
           </a>
           <ul class="treeview-menu">
           @role('admin')
-            <li><a href="/admin/users">VER USUARIOS</a></li>
-            <li><a href="/entrust-gui/users">ROLES Y PERMISOS</a></li>
-            <li><a href="/admin/users/new">AGREGAR USUARIO</a></li>
+            <li><a href="{{url('/admin/users')}}">VER USUARIOS</a></li>
+            <li><a href="{{url('/admin/users')}}">ROLES Y PERMISOS</a></li>
+            <li><a href="{{url('/admin/users/new')}}">AGREGAR USUARIO</a></li>
           @endrole
-            <li><a href="/admin/users/profile/{{auth()->user()->id}}">MI PERFIL</a></li>
+            <li><a href="{{url('/admin/users/profile/'.auth()->user()->id)}}">MI PERFIL</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -276,11 +276,11 @@
           </a>
           <ul class="treeview-menu">
           @role('admin')
-            <li><a href="/admin/pagos">PRODUCTOS Y SERVICIOS</a></li>
-            <li><a href="/admin/pagos/new">AGREGAR SERVICIO</a></li>
-            <li><a href="/admin/pagos/user">PAGOS USUARIOS</a></li>
+            <li><a href="{{url('/admin/pagos')}}">PRODUCTOS Y SERVICIOS</a></li>
+            <li><a href="{{url('/admin/pagos/new')}}">AGREGAR SERVICIO</a></li>
+            <li><a href="{{url('/admin/pagos/user')}}">PAGOS USUARIOS</a></li>
           @endrole
-            <li><a href="/admin/pagos/profile/{{auth()->user()->id}}">MIS PAGOS</a></li>
+            <li><a href="{{url('/admin/pagos/profile/'.auth()->user()->id)}}">MIS PAGOS</a></li>
           </ul>
         </li>
           @role('admin')
@@ -291,8 +291,8 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin/cajas">CAJAS</a></li>
-            <li><a href="/admin/cajas/new">AGREGAR CAJA</a></li>
+            <li><a href="{{url('/admin/cajas')}}">CAJAS</a></li>
+            <li><a href="{{url('/admin/cajas/new')}}">AGREGAR CAJA</a></li>
           </ul>
         </li>
           @endrole
@@ -311,7 +311,7 @@
         <small>Sistema de pagos y usuarios</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i>Sitio web</a></li>
+        <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i>Sitio web</a></li>
         <li class="active">Here</li>
       </ol>
     </section>
@@ -348,16 +348,19 @@
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="/adminlte/plugins/jquery/dist/jquery.min.js"></script>
+<script src="{{url('/adminlte/plugins/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="/adminlte/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="{{url('/adminlte/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="/adminlte/js/adminlte.min.js"></script>
+<script src="{{url('/adminlte/js/adminlte.min.js')}}"></script>
 
-<script src="/js/main.js"></script>
+<script src="{{url('/js/main.js')}}"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+<script>
+  jQuery('div.alert').delay(2500).fadeOut(500);
+</script>
 </body>
 </html>

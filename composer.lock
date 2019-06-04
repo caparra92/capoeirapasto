@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa2b61226c39678074ecec756b25a155",
+    "content-hash": "bde162c94c20f5959f8d8ca9d3a234e4",
     "packages": [
         {
             "name": "acoustep/entrust-gui",
@@ -3246,16 +3246,16 @@
         },
         {
             "name": "zizaco/entrust",
-            "version": "5.2.x-dev",
+            "version": "1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Zizaco/entrust.git",
-                "reference": "3623cc052937d9e62543402b50f24065720d44b9"
+                "reference": "05b2542f5f96ea80998a13800c6e216df6821bff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Zizaco/entrust/zipball/3623cc052937d9e62543402b50f24065720d44b9",
-                "reference": "3623cc052937d9e62543402b50f24065720d44b9",
+                "url": "https://api.github.com/repos/Zizaco/entrust/zipball/05b2542f5f96ea80998a13800c6e216df6821bff",
+                "reference": "05b2542f5f96ea80998a13800c6e216df6821bff",
                 "shasum": ""
             },
             "require": {
@@ -3271,6 +3271,16 @@
                 "sami/sami": "dev-master"
             },
             "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Zizaco\\Entrust\\EntrustServiceProvider"
+                    ],
+                    "aliases": {
+                        "Entrust": "Zizaco\\Entrust\\EntrustFacade"
+                    }
+                }
+            },
             "autoload": {
                 "classmap": [
                     "src/commands"
@@ -3310,7 +3320,7 @@
                 "permission",
                 "roles"
             ],
-            "time": "2016-12-29T06:25:06+00:00"
+            "time": "2017-11-13T23:25:18+00:00"
         }
     ],
     "packages-dev": [
@@ -5049,7 +5059,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "zizaco/entrust": 20,
         "acoustep/entrust-gui": 20
     },
     "prefer-stable": false,

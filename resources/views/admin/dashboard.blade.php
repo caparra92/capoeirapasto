@@ -15,7 +15,7 @@
                 <i class="fa fa-dollar"></i>
             </div>
             <!-- /.box-body -->
-            <a href="/admin/pagos/user" class="small-box-footer"> Ver más</a>
+            <a href="{{url('/admin/pagos/user')}}" class="small-box-footer"> Ver más</a>
            </div>
         </div>
         <div class="col-md-3">
@@ -28,7 +28,7 @@
                 <i class="fa fa-comments"></i>
             </div>
             <!-- /.box-body -->
-            <a href="/admin/posts" class="small-box-footer"> Ver más</a>
+            <a href="{{url('/admin/posts')}}" class="small-box-footer"> Ver más</a>
            </div>
         </div>
         <div class="col-md-3">
@@ -41,7 +41,7 @@
                 <i class="fa fa-user-circle"></i>
             </div>
             <!-- /.box-body -->
-            <a href="/admin/users" class="small-box-footer"> Ver más</a>
+            <a href="{{url('/admin/users')}}" class="small-box-footer"> Ver más</a>
            </div>
         </div>
     @endrole
@@ -56,7 +56,7 @@
                     <i class="fa fa-dollar"></i>
                 </div>
                 <!-- /.box-body -->
-                <a href="/admin/pagos/profile/{{auth()->user()->id}}" class="small-box-footer"> Ver más</a>
+                <a href="{{url('/admin/pagos/profile/'.auth()->user()->id)}}" class="small-box-footer"> Ver más</a>
             </div>
         </div>
     @endrole

@@ -15,7 +15,7 @@
 
 <body class="hold-transition sidebar-mini">
   <header class="header">   
-      <img src="/img/banner1.jpeg" alt="banner" class="img-responsive"> 
+      <img src="{{url('/img/banner1.jpeg')}}" alt="banner" class="img-responsive"> 
   </header>
   <nav class="navbar navbar-inverse" style="background-color:#33b749">
     <div class="container-fluid">
@@ -27,17 +27,17 @@
         <span class="icon-bar"></span>
       </button>
         <a class="navbar-brand" href="/">
-          <img alt="capoeira pasto" src="/capoeira.svg" width="30px" height="30px" class="d-inline-block align-top">
+          <img alt="capoeira pasto" src="{{url('/capoeira.svg')}}" width="30px" height="30px" class="d-inline-block align-top">
         </a>
       </div>
       <div class="collapse navbar-collapse text-center" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/" class="nlink">Inicio</a></li>
-          <li><a href="/category/musica" class="nlink">Musica</a></li>
-          <li><a href="/category/tecnica" class="nlink">Tecnica</a></li>
-          <li><a href="/category/eventos" class="nlink">Eventos</a></li>
-          <li><a href="/category/noticias" class="nlink">Noticias</a></li>
-          <li><a href="/tienda" class="nlink">Tienda</a></li>
+          <li><a href="{{url('/')}}" class="nlink">Inicio</a></li>
+          <li><a href="{{url('/category/musica')}}" class="nlink">Musica</a></li>
+          <li><a href="{{url('/category/tecnica')}}" class="nlink">Tecnica</a></li>
+          <li><a href="{{url('/category/eventos')}}" class="nlink">Eventos</a></li>
+          <li><a href="{{url('/category/noticias')}}" class="nlink">Noticias</a></li>
+          <li><a href="{{url('/tienda')}}" class="nlink">Tienda</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li style="height: 50px"><a href="#"><img src="/img/IconBrasil.png" class="center" alt="brasil-icon" width="45px" height="40px"></a></li>
@@ -45,9 +45,9 @@
             <li style="height: 50px"><a href="#"><img src="/img/IconEngland.png" class="center" alt="england-icon" width="30px" height="35px"></a></li>
           @if (Route::has('login'))
           @auth
-            <li><a href="/admin" class="nlink px-3 mr-auto">Admin</a></li>
+            <li><a href="{{url('/admin')}}" class="nlink px-3 mr-auto">Admin</a></li>
             @else
-            <li><a href="/login" class="nlink">Login</a></li>
+            <li><a href="{{url('/login')}}" class="nlink">Login</a></li>
           @endauth
             </form>
           </ul>
@@ -69,11 +69,11 @@
     @foreach($post_related as $related)
     <div class="itemCard col-md-4">
         <div class="card">
-        <img class="card-img-top" src="/img/{{$related->path}}" alt="Card image cap" width="200px" height="150px">
+        <img class="card-img-top" src="{{url('/img/'.$related->path)}}" alt="Card image cap" width="200px" height="150px">
         <div class="card-body">
             <h5 class="card-title">{{$related->titulo}}</h5>
             <p class="card-text"></p>
-            <a href="/post/{{$related->slug}}">Ver más</a>
+            <a href="{{url('/post/'.$related->slug)}}">Ver más</a>
         </div>
         <div class="card-footer text-muted">
         {!! \Carbon\Carbon::parse($related->updated_at)->toFormattedDateString() !!}
@@ -116,7 +116,7 @@
     <div class="col-md-6 mt-3 pt-3" style="padding-top:10px">
 
       <!-- Content -->
-      <img src="/abolicao.png" alt="capoeira abolicao" width="50px" height="55px">
+      <img src="{{url('/abolicao.png')}}" alt="capoeira abolicao" width="50px" height="55px">
       <h5 class="text-uppercase">Capoeira Abolicao Pasto</h5>
       <p>Visita nuestras redes sociales para estar actualizado con las ultimas noticias, videos y eventos.</p>
     </div>
@@ -128,13 +128,13 @@
 
         <ul class="list-unstyled">
           <li>
-            <a href="#!" class="link"><img src="/img/flogo.png" alt="facebook logo" width="45px"></a>
+            <a href="#!" class="link"><img src="{{url('/img/flogo.png')}}" alt="facebook logo" width="45px"></a>
           </li>
           <li>
-            <a href="#!" class="link"><img src="/img/ilogo.png" alt="instagram logo" width="35px"></a>
+            <a href="#!" class="link"><img src="{{url('/img/ilogo.png')}}" alt="instagram logo" width="35px"></a>
           </li>
           <li style="padding-top:7px">
-            <a href="#!" class="link"><img src="/img/ylogo.png" alt="youtube logo" width="35px"></a>
+            <a href="#!" class="link"><img src="{{url('/img/ylogo.png')}}" alt="youtube logo" width="35px"></a>
           </li>
         </ul>
 

@@ -160,6 +160,47 @@ $(document).ready(function(){
     });
   }); 
   
-  
+  $('#add').on('click',function(e){
+    e.preventDefault();
+    //var checkbox = $('.form-check-input:checked');
+      //inicio ajax
+      $.ajax({
+        type:'POST',
+        url:'/admin/roles/permission/new',
+        dataType: 'json',
+        data:$('#formPerm').serialize(),
+        success: function (resp) {
+          console.log(resp);
+          for(var i=0;i<resp.length;i++){
+            $('#panelF').append('<div class="col-md-4 col-xs-4">'+
+                            '<input type="checkbox" checked name="permissions[]"'+
+                            'id="'+resp[i]+'" value="'+resp[i]+'"'+
+                            'class="form-check-input">'+
+                            '<label for="'+resp[i]+'" class="form-check-label">'+resp[i]+
+                            '</label>'+
+                            ' </div>');
+            var check = $('#chk'+resp[i]);
+            check.remove();
+          } 
+
+          $('.content-header').append('<div class="alert alert-success alert-link row">'+
+                        '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
+                        '<b>Permiso(s)</b> agregados con éxito!!'+
+                        '</div>');
+          setTimeout(function() {
+          $(".alert").fadeOut('slow', function(){$(this).remove(); });
+          }, 3000);
+          window.location.reload();
+          
+          
+        },
+        error: function(resp, textStatus, error){
+          console.log(textStatus);
+          console.log(error);
+          console.log(resp);
+        }
+      });
+      //fin ajax
+  });
 
 });

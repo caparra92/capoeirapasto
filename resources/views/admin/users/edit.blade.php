@@ -4,11 +4,11 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="panel panel-default">
                 <div class="panel-heading">Actualizar usuario</div>
                 <div class="panel-body">
-                    <form method="post" action="/admin/users/update/{{$user->id}}" class="form-horizontal" enctype="multipart/form-data">
+                    <form method="post" action="{{url('/admin/users/update/'.$user->id)}}" class="form-horizontal" enctype="multipart/form-data">
                     {{ csrf_field() }}
                         <div class="form-group">
                             <label for="nombre" class="col-md-4 control-label">Nombre</label>
@@ -43,7 +43,7 @@
                         <div class="form-group">
                             <label for="password" class="col-md-4 control-label">Password</label>
                             <div class="col-md-6">
-                                <input type="text" name="password" id="password" class="form-control" value="{{ $user->password }}">
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Ingrese password">
                             </div>
                         </div>
                         <div class="form-group">
@@ -62,17 +62,33 @@
                             <label for="avatar" class="col-md-4 control-label">Avatar</label>
                             <div class="col-md-6">
                                 @if($user->path)
-                                    <img src="/img/{{$user->path}}" alt="imagenUser" class="img-responsive" width="50px">
+                                    <img src="{{url('/img/'.$user->path)}}" alt="imagenUser" class="img-responsive" width="50px">
                                 @else
-                                    <img src="/img/default.jpg" alt="imagenUser" class="img-responsive" width="50px">
+                                    <img src="{{url('/img/default.jpg')}}" alt="imagenUser" class="img-responsive" width="50px">
                                 @endif 
                                 <hr>
                                 <input type="file" name="imagen" id="imagen" class="form-control">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <input type="submit" class="btn btn-warning" value="Actualizar">
+                        <div class="panel-footer">
+                        @role('admin')
+                        <div class="col-md-12"><h3>Roles</h3>
+                            <h5>(@foreach($user->roles as $rol)*{{$rol->display_name }} @endforeach)</h5>
+                        </div>
+                        @foreach($roles as $role)
+                            <div class="form-check">
+                                <div class="col-md-3">
+                                    <input type="radio" name="role" id="{{$role->name}}" value="{{$role->name}}"class="form-check-input">
+                                    <label for="{{$role->name}}" class="form-check-label">{{$role->display_name}}</label>
+                                </div>
+                            </div>
+                        @endforeach
+
+                        @endrole
+                            <div class="form-group">
+                                <div class="col-md-12" style="padding-top:30px">
+                                    <input type="submit" class="btn btn-warning btn-edit" value="Actualizar">
+                                </div>
                             </div>
                         </div>
                     </form>

@@ -20,13 +20,13 @@
                 <td data-label="Descripción">{{ $category->descripcion }}</td>
                 <td data-label="Creado por">{{ $category->user->nombre}}</td>
                 <td data-label="Acciones">
-                    <a href="/admin/categories/edit/{{$category->id}}">
+                    <a href="{{url('/admin/categories/edit/'.$category->id)}}">
                         <button class="btn btn-warning">
                             <i class="fa fa-pencil"></i>
                             <span></span>
                         </button>
                     </a>
-                    <a href="/admin/categories/delete/{{$category->id}}" onclick="return confirm('¿Desea eliminar permanentemente la categoria?')">
+                    <a href="{{url('/admin/categories/delete/'.$category->id)}}" onclick="return confirm('¿Desea eliminar permanentemente la categoria?')">
                         <button class="btn btn-danger">
                             <i class="fa fa-trash"></i>
                             <span></span>

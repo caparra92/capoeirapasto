@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CreateUsersRequest;
 use App\User;
+Use App\Role;
+Use App\Permission;
 Use Image;
 
 class UserController extends Controller
@@ -40,8 +43,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('admin.users.create');
+    {   
+        $roles = Role::all();
+        $permissions = Permission::all();
+        return view('admin.users.create')->with(['roles'=>$roles,'permissions'=>$permissions]);
     }
 
     /**
@@ -51,7 +56,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(CreateUsersRequest $request)
-    {
+    {   
         $validated = $request->validated();
         $user = new User;
         $user->nombre = $request->nombre;
@@ -62,15 +67,9 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         $user->usuario  = $request->usuario;
         $user->email = $request->email;
-        $ruta = public_path().'/img/';
-        $imagen_original = $request->file('imagen');
-        $imagen = Image::make($imagen_original);
-        $temp_name = $this->random_string() . '.' . $imagen_original->getClientOriginalExtension();
-        $imagen->resize(215,215);
-        $imagen->save($ruta . $temp_name, 100);
-        $user->path = $temp_name;
 
         $user->save();
+        $user->attachRole($request->role);
         flash('Usuario creado con éxito!!','success')->important();
         return redirect('/admin/users');
     }
@@ -96,7 +95,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('admin.users.edit')->with('user',$user);
+        $roles = Role::all();
+        $permissions = Permission::all();
+        return view('admin.users.edit')->with(['user'=>$user,'roles'=>$roles,'permissions'=>$permissions]);
     }
 
     /**
@@ -109,7 +110,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        
+        //dd($request->roles);
         if($request->file()){
             $ruta = public_path().'/img/';
             $imagen_original = $request->file('imagen');
@@ -131,6 +132,13 @@ class UserController extends Controller
         $user->email = $request->get('email');
 
         $user->save();
+        if($user->hasRole($request->role)){
+            flash('El rol '.$request->role.' ya se encuentra asignado a este usuario','danger')->important();
+        }
+        else{
+            $rol = Role::where('name','=',$request->role)->first();
+            $user->attachRole($rol->id);
+        }
         flash('Usuario editado con éxito!!','warning')->important();
         return redirect('/admin/users/');
 
@@ -162,4 +170,140 @@ class UserController extends Controller
         $user->save();
         return response()->json($user->path);
     }
+
+    public function indexRoles(){
+        $roles = Role::all();
+        return view('admin.roles.index')->with('roles',$roles);
+    }
+
+    public function createRoles(){
+        $permissions = Permission::all();
+        return view('admin.roles.create')->with('permissions',$permissions);
+    }
+
+    public function storeRoles(Request $request){
+        //dd($request->all());
+        $validated = $request->validated();
+        $role = new Role();
+        $role->name = $request->name;
+        $role->display_name = $request->display_name;
+        $role->description = $request->description;
+        
+        $role->save();
+        $role->attachPermissions(array($request->permissions));
+        flash('Rol agregado con éxito!!','success')->important();
+        return redirect('/admin/roles');
+        
+    }
+
+    public function editRoles($id){
+        $role = Role::find($id);
+        $permissions = Permission::all();
+        $arrayPermRole=[];
+        $arrayPerm=[];
+        $idPermRole=[];
+        foreach($role->perms as $rolePerm){
+            $arrayPermRole[]=$rolePerm->name;
+            $idPermRole[]=$rolePerm->id;  
+        }
+        foreach($permissions as $perm){
+            $arrayPerm[]=$perm->name;
+            $idPerm[]=$perm->id;
+        }
+        $difPerm = array_diff($arrayPerm,$arrayPermRole);
+        $difId = array_diff($idPerm,$idPermRole);
+        $permArray = array_fill_keys($difId,$difPerm);
+        
+        return view('admin.roles.edit')->with(['role'=>$role,'difPerm'=>$difPerm,'difId'=>$difId,'permArray'=>$permArray]);
+    }
+
+    public function updateRoles(Request $request,$id){
+        $role = Role::find($id);
+        //dd($request->permissions);
+        $role->name = $request->name;
+        $role->display_name = $request->display_name;
+        $role->description = $request->description;
+        $role->save();
+        if(!$request->permissions){
+            flash('Ningun permiso asignado','danger')->important();
+            flash('Rol actualizado con éxito!!','warning')->important();
+            return redirect('/admin/roles');
+        }else{
+            $role->detachPermissions($role->perms);
+            $role->attachPermissions($request->permissions);
+            flash('Rol actualizado con éxito!!','warning')->important();
+            return redirect('/admin/roles');
+        }
+        
+    }
+
+    public function destroyRoles($id){
+        $role = Role::find($id);
+        $role->delete();
+        flash('Rol eliminado con éxito!!','danger')->important();
+        return redirect('/admin/roles');
+    }
+    
+    //permisos
+    public function indexPermissions(){
+        $permissions = Permission::paginate(5);
+        return view('admin.permissions.index')->with('permissions',$permissions);
+    }
+
+    public function createPermissions(){
+        return view('admin.permissions.create');
+    }
+
+    public function storePermissions(Request $request){
+        //dd($request->all());
+        $permission = new Permission();
+        $permission->name = $request->name;
+        $permission->display_name = $request->display_name;
+        $permission->description = $request->description;
+        $permission->save();
+        
+        flash('Permiso agregado con éxito!!','success')->important();
+        return redirect('/admin/permissions');
+    }
+
+    public function editPermissions($id){
+        $permission = Permission::find($id);
+        
+        return view('admin.permissions.edit')->with('permission',$permission);
+    }
+
+    public function updatePermissions(Request $request,$id){
+        $permission = Permission::find($id);
+        $permission->name = $request->name;
+        $permission->display_name = $request->display_name;
+        $permission->description = $request->description;
+        $permission->save();
+    
+        flash('Permiso actualizado con éxito!!','warning')->important();
+        return redirect('/admin/permissions');
+    }
+
+    public function destroyPermissions($id){
+        $permission = Permission::find($id);
+        $permission->delete();
+        flash('Permiso eliminado con éxito!!','danger')->important();
+        return redirect('/admin/permissions');
+    }
+
+    public function addPerms(Request $request){
+        $role = Role::find($request->role_id);
+        $newPerms = $request->permissions;
+        $long = count($newPerms);
+        $perms = [];
+        for($i=0;$i<$long;$i++){
+            $perms = DB::table('permissions')
+                    ->where('name','=',$newPerms[$i])
+                    ->select('id')
+                    ->first();
+            $role->attachPermissions($perms);
+        }
+        //$perm_array = array_fill_keys(array($perms),$newPerms);
+        return response()->json($newPerms);
+    }
+    
 }

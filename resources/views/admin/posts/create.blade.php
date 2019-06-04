@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Agregar nuevo post</div>
                 <div class="panel-body">
-                    <form method="post" action="/admin/posts/store" class="form-horizontal" enctype="multipart/form-data">
+                    <form method="post" action="{{url('/admin/posts/store')}}" class="form-horizontal" enctype="multipart/form-data">
                     {{ csrf_field() }}
                         <div class="form-group">
                             <label for="titulo" class="col-md-4 control-label">Titulo</label>

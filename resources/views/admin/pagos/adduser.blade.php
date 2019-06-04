@@ -8,7 +8,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">{{$pago->detalle}}</div>
                 <div class="panel-body">
-                    <form method="post" action="/admin/pagos/user/add/{{$pago->id}}" class="form-horizontal">
+                    <form method="post" action="{{url('/admin/pagos/user/add/'.$pago->id)}}" class="form-horizontal">
                     {{ csrf_field() }}
                         <div class="form-group">
                             <label for="estado" class="col-md-4 control-label">Estado</label>

@@ -8,7 +8,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Actualizar Post</div>
                 <div class="panel-body">
-                    <form method="post" action="/admin/posts/update/{{$post->id}}" class="form-horizontal" enctype="multipart/form-data">
+                    <form method="post" action="{{url('/admin/posts/update/'.$post->id)}}" class="form-horizontal" enctype="multipart/form-data">
                     {{ csrf_field() }}
                         <div class="form-group">
                             <label for="titulo" class="col-md-4 control-label">Titulo</label>
@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label for="imagen" class="col-md-4 control-label">Imagen</label>
                             <div class="col-md-6">
-                                <img src="/img/{{$post->path}}" alt="imagenPost" class="img-responsive" style="padding-top:20px;padding-bottom:30px;">
+                                <img src="{{url('/img/'.$post->path)}}" alt="imagenPost" class="img-responsive" style="padding-top:20px;padding-bottom:30px;">
                                 <input type="file" name="imagen" id="imagen" class="form-control" value="{{$post->path}}">
                             </div>
                         </div> 

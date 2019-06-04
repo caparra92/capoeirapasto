@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Actualizar pago</div>
                 <div class="panel-body">
-                    <form method="post" action="/admin/pagos/update/{{$pago->id}}" class="form-horizontal">
+                    <form method="post" action="{{url('/admin/pagos/update/'.$pago->id)}}" class="form-horizontal">
                     {{ csrf_field() }}
                         <div class="form-group">
                             <label for="titulo" class="col-md-4 control-label">Detalle</label>

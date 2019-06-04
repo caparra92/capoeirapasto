@@ -8,7 +8,7 @@
         <div class="panel-heading">
             <div class="panel-body">
             @foreach($pago as $pag)
-                <form action="/admin/pagos/user/estado/{{$pago_user_id}}" method="post" id="formCaja" name="formCaja">
+                <form action="{{url('/admin/pagos/user/estado/'.$pago_user_id)}}" method="post" id="formCaja" name="formCaja">
                 {{ csrf_field() }}
                     <div class="form-group">
                     <input type="hidden" name="valor" value="{{$pag->valor}}">

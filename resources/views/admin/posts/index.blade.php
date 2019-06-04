@@ -24,19 +24,19 @@
                 <td data-label="Categoría">{{ $post->categoria->nombre}}</td>
                 <td data-label="Creado por">{{ $post->user->nombre}}</td>
                 <td data-label="Acciones">
-                    <a href="/admin/posts/edit/{{$post->id}}">
+                    <a href="{{url('/admin/posts/edit/'.$post->id)}}">
                         <button class="btn btn-warning">
                             <i class="fa fa-pencil"></i>
                             <span></span>
                         </button>
                     </a>
-                    <a href="/admin/posts/delete/{{$post->id}}" onclick="return confirm('¿Desea eliminar permanentemente el post?')">
+                    <a href="{{url('/admin/posts/delete/'.$post->id)}}" onclick="return confirm('¿Desea eliminar permanentemente el post?')">
                         <button class="btn btn-danger">
                             <i class="fa fa-trash"></i>
                             <span></span>
                         </button>
                     </a>
-                    <a href="/admin/post/{{$post->id}}/coments">
+                    <a href="{{url('/admin/post/'.$post->id.'/coments')}}">
                         <button class="btn btn-success">
                             <i class="fa fa-comments"></i>
                             <span></span>

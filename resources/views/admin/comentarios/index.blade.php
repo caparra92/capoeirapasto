@@ -19,7 +19,7 @@
                 <td data-label="Descripcion">{{ $coment->descripcion }}</td>
                 <td data-label="Usuario">{{ $coment->user->usuario }}</td>
                 <td data-label="Acciones">
-                    <a href="/admin/post/coment/delete/{{$coment->id}}" onclick="return confirm('¿Desea eliminar permanentemente el comentario?')">
+                    <a href="{{url('/admin/post/coment/delete/'.$coment->id)}}" onclick="return confirm('¿Desea eliminar permanentemente el comentario?')">
                         <button class="btn btn-danger">
                             <i class="fa fa-trash"></i>
                             <span></span>

@@ -21,7 +21,7 @@
           </a>
           <ul class="treeview-menu">
               @foreach($mes->posts as $post)
-            <li><a href="/post/{{$post->slug}}" class="linkPost">{{ substr($post->titulo,0,25) }}...</a></li>
+            <li><a href="{{url('/post/'.$post->slug)}}" class="linkPost">{{ substr($post->titulo,0,25) }}...</a></li>
              @endforeach
           </ul>
         </li>
@@ -31,15 +31,15 @@
     <aside class="asideF aside-2">
             <i class="fa fa-folder"></i><span></span><strong style="font-size:16px"> Publicaciones Pasadas</strong>
         @foreach($posts->sortBy('id') as $post)
-            <h5><a href="/post/{{$post->slug}}">{{ $post->titulo }}</a></h5>
+            <h5><a href="{{url('/post/'.$post->slug)}}">{{ $post->titulo }}</a></h5>
         @endforeach
     </aside>
         @foreach($posts as $post)
     <article class="main">
         <h2 class="text-left">{{ $post->titulo }}</h2>
         <i class="fa fa-folder"></i>
-        <span></span><a href="/category/{{strtolower($post->categoria->nombre)}}"><small>{{$post->categoria->nombre}}</small></a>
-        <img src="img/{{$post->path}}" alt="imagenPost" class="img-responsive" style="padding-top:20px;padding-bottom:30px;" width="600px">
+        <span></span><a href="{{url('/category/'.strtolower($post->categoria->nombre))}}"><small>{{$post->categoria->nombre}}</small></a>
+        <img src="{{url('/img/'.$post->path)}}" alt="imagenPost" class="img-responsive" style="padding-top:20px;padding-bottom:30px;" width="600px">
             <p>{{ $post->descripcion }}</p>
         
         <div class="contenedorH">
@@ -61,7 +61,7 @@
             </div>
                 @if (Route::has('login'))
             <div class="contenedorH">
-                <form action="/post/coment" method="post" id="{{$post->id}}" class="formCom">
+                <form action="{{url('/post/coment')}}" method="post" id="{{$post->id}}" class="formCom">
                     {{ csrf_field() }}
                         <input type="hidden" name="post_id" id="post_id" value="{{$post->id}}">
                         <div class="form-group">

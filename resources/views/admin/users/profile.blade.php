@@ -6,17 +6,17 @@
         <div class="col-md-3 text-center">
             <div class="col-md-12 div-img">
                 @if($user->path)
-                <img src="/img/{{ $user->path }}" alt="Imagen perfil" class="imagen img-circle">
+                <img src="{{url('/img/'.$user->path)}}" alt="Imagen perfil" class="imagen img-circle">
                 @else
-                <img src="/img/default.jpg" alt="Imagen perfil" class="imagen img-circle" width="215px" height="215px">
+                <img src="{{url('/img/default.jpg')}}" alt="Imagen perfil" class="imagen img-circle" width="215px" height="215px">
                 @endif
-                <form method="POST" action="/admin/users/updateImg" enctype="multipart/form-data" id="formImg" style="display: none">
+                <form method="POST" action="{{url('/admin/users/updateImg')}}" enctype="multipart/form-data" id="formImg" style="display: none">
                     <input type="file" class="archivo" name="imagen" id="imagen">
                 </form>
             </div>
             <div class="col-md-12">
-                <a href="#"><img src="/img/flogo.png" alt="facebook logo" width="50px"></a>
-                <a href="#"><img src="/img/ilogo.png" alt="Instagram logo" width="35px"></a>
+                <a href="#"><img src="{{url('/img/flogo.png')}}" alt="facebook logo" width="50px"></a>
+                <a href="#"><img src="{{url('/img/ilogo.png')}}" alt="Instagram logo" width="35px"></a>
             </div>
         </div>
         <div class="col-md-9 col-lg-6">
@@ -46,7 +46,7 @@
                         <h3>Email</h3><p>{{$user->email}}</p>
                     </div>
                     <div class="col-md-6">
-                        <a href="/admin/users/edit/{{$user->id}}">
+                        <a href="{{url('/admin/users/edit/'.$user->id)}}">
                             <button class="btn btn-warning">
                                 <i class="fa fa-pencil"></i>
                                 <span>Editar perfil</span>

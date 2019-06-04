@@ -15,7 +15,7 @@
                 </div>
             @endif
             <div class="panel panel-default form-login">
-                <div class="text-center"><img src="/img/logo.png" alt="logo" width="60px"></div>
+                <div class="text-center"><img src="{{url('/img/logo.png')}}" alt="logo" width="60px"></div>
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}

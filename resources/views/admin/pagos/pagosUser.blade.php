@@ -47,18 +47,18 @@
                 <td data-label="Producto"><p>{{ $pago->detalle }}</p></td>
                 <td data-label="Valor"><p>{{ '$ ' .number_format($pago->valor,2,",",".") }}</p></td>
                 <td data-label="Acciones" class="acciones text-center">
-                    <a href="/admin/pagos/user/edit/{{$pago->id}}">
+                    <a href="{{url('/admin/pagos/user/edit/'.$pago->id)}}">
                         <button class="btn btn-warning"><i class="fa fa-pencil"></i>
                         <span></span>
                         </button>
                     </a>
-                    <a href="/admin/pagos/user/delete/{{$pago->id}}" onclick="return confirm('¿Desea eliminar permanentemente el pago?')">
+                    <a href="{{url('/admin/pagos/user/delete/'.$pago->id)}}" onclick="return confirm('¿Desea eliminar permanentemente el pago?')">
                         <button class="btn btn-danger"><i class="fa fa-trash"></i>
                         <span></span>
                         </button>   
                     </a>
                     @if($pago->estado=="pendiente" || $pago->estado=="vencido")
-                    <a href="/admin/pagos/caja/{{$pago->id}}">
+                    <a href="{{url('/admin/pagos/caja/'.$pago->id)}}">
                         <button class="btn btn-success"><i class="fa fa-dollar"></i>
                         <span></span>
                         </button>
@@ -84,7 +84,7 @@
                     <h4 class="modal-title">Filtro avanzado</h4>
                 </div>
                 <div class="modal-body mx-3">
-                    <form action="/admin/pagos/user/filter" method="post" id="formModal" name="formModal">
+                    <form action="{{url('/admin/pagos/user/filter')}}" method="post" id="formModal" name="formModal">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <div class="col-md-10">

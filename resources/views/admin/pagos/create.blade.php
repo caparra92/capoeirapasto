@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Agregar nuevo pago</div>
                 <div class="panel-body">
-                    <form method="post" action="/admin/pagos/store" class="form-horizontal">
+                    <form method="post" action="{{url('/admin/pagos/store')}}" class="form-horizontal">
                     {{ csrf_field() }}
                         <div class="form-group">
                             <label for="titulo" class="col-md-4 control-label">Detalle</label>
